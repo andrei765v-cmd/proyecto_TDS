@@ -4,5 +4,5 @@ module es.um.tds.gestionGastos {
 
 	opens es.um.tds.gestionGastos to javafx.fxml;
 
-	exports es.um.tds.gestionGastos;
+	//exports es.um.tds.gestionGastos;
 }

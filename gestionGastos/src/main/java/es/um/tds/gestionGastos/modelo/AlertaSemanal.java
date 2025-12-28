@@ -12,6 +12,16 @@ import java.util.stream.Collectors;
  */
 public class AlertaSemanal extends Alerta {
 
+    /**
+     * Constructor con código autogenerado
+     */
+    public AlertaSemanal(double limiteGasto, Categoria categoria) {
+        super(limiteGasto, categoria);
+    }
+
+    /**
+     * Constructor con código específico
+     */
     public AlertaSemanal(String codigo, double limiteGasto, Categoria categoria) {
         super(codigo, limiteGasto, categoria);
     }

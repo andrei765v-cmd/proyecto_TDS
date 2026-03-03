@@ -1,4 +1,8 @@
-package CuentaCompartida;
+package es.um.tds.gestionGastos.Controladores;
+
+import es.um.tds.gestionGastos.modelo.CuentaCompartida.*;
+import es.um.tds.gestionGastos.modelo.Usuario;
+import es.um.tds.gestionGastos.modelo.Alertas.Categoria;
 
 import java.time.LocalDate;
 import java.util.Collections;

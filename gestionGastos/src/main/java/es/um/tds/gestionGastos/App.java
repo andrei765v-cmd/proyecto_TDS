@@ -15,13 +15,13 @@ public class App extends Application {
 	    try {
 	        // 1. Cargamos el archivo FXML
 	        // Importante: asegúrate de que el nombre coincida exactamente
-	        Parent root = FXMLLoader.load(getClass().getResource("Vista.fxml"));
+	        Parent root = FXMLLoader.load(getClass().getResource("VistaPrincipal.fxml"));
 
 	        // 2. Creamos la escena con el contenido del FXML
 	        Scene scene = new Scene(root);
 
 	        // 3. Configuramos el escenario
-	        primaryStage.setTitle("Mi Aplicación con Scene Builder");
+	        primaryStage.setTitle("Aplicacion TDS");
 	        primaryStage.setScene(scene);
 	        primaryStage.show();
 	        

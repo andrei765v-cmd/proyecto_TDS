@@ -5,7 +5,8 @@ module es.um.tds.gestionGastos {
 
 	opens es.um.tds.gestionGastos to javafx.fxml;
 	opens es.um.tds.gestionGastos.modelo to javafx.base;
-
+	opens es.um.tds.gestionGastos.Controladores to javafx.fxml;
+	
 	exports es.um.tds.gestionGastos;
 	exports es.um.tds.gestionGastos.modelo;
 	exports es.um.tds.gestionGastos.modelo.Alertas;

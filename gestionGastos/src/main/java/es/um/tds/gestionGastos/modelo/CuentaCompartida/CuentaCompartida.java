@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import es.um.tds.gestionGastos.modelo.Categoria;
 import es.um.tds.gestionGastos.modelo.Gasto;
 import es.um.tds.gestionGastos.modelo.Usuario;
-import es.um.tds.gestionGastos.modelo.Alertas.Categoria;
 
 public abstract class CuentaCompartida {
 	private String nombre;

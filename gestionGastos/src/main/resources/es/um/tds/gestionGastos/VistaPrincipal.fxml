@@ -8,7 +8,7 @@
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="900.0" 
             styleClass="main-container" stylesheets="@style.css" 
             xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="es.um.tds.gestionGastos.Controladores.ControladorPrincipal">		<!-- Contrololador con la lógica de la UI -->
+            fx:controller="es.um.tds.gestionGastos.interfaz.VentanaPrincipalController">		<!-- Contrololador con la lógica de la UI -->
    
    <top>
       <VBox spacing="0">

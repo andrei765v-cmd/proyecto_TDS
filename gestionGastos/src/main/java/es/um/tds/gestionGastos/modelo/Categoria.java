@@ -1,4 +1,4 @@
-package es.um.tds.gestionGastos.modelo.Alertas;
+package es.um.tds.gestionGastos.modelo;
 
 public class Categoria {
 	private String nombre;

@@ -2,8 +2,6 @@ package es.um.tds.gestionGastos.modelo;
 
 import java.time.LocalDate;
 
-import es.um.tds.gestionGastos.modelo.Alertas.Categoria;
-
 public class Gasto {
     private double cantidad;
     private LocalDate fecha;

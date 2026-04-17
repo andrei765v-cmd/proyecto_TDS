@@ -3,6 +3,7 @@ package es.um.tds.gestionGastos.modelo.Alertas;
 import java.time.LocalDate;
 import java.util.List;
 
+import es.um.tds.gestionGastos.modelo.Categoria;
 import es.um.tds.gestionGastos.modelo.Gasto;
 
 public class AlertaMensual extends Alerta {

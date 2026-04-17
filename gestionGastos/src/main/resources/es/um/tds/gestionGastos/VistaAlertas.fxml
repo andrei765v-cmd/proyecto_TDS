@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Circle?>
+
+<VBox spacing="20.0" styleClass="alerts-container" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <padding>
+      <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+   </padding>
+   <children>
+      <HBox alignment="CENTER_LEFT" spacing="10.0">
+         <children>
+            <Label styleClass="section-title" text="Alertas y Notificaciones" />
+            <Label styleClass="badge-count" text="3 Pendientes" />
+         </children>
+      </HBox>
+
+      <ScrollPane fitToWidth="true" styleClass="transparent-scroll" VBox.vgrow="ALWAYS">
+         <content>
+            <VBox spacing="15.0">
+               <children>
+                  
+                  <HBox spacing="15.0" styleClass="alert-card, alert-critical">
+                     <children>
+                        <Circle radius="6.0" fill="#ff4d4d" />
+                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label styleClass="alert-header" text="Presupuesto Excedido: Comida" />
+                              <Label styleClass="alert-body" text="Has superado el límite de 200€ mensual en la categoría Restaurantes." wrapText="true" />
+                           </children>
+                        </VBox>
+                        <Button mnemonicParsing="false" styleClass="button-action" text="Ajustar" />
+                     </children>
+                  </HBox>
+
+                  <HBox spacing="15.0" styleClass="alert-card, alert-info">
+                     <children>
+                        <Circle radius="6.0" fill="#00a8ff" />
+                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label styleClass="alert-header" text="Nuevo Gasto de 'Juan'" />
+                              <Label styleClass="alert-body" text="Se ha añadido un gasto de 45.00€ en 'Internet/Fibra'. Tu parte: 22.50€." wrapText="true" />
+                           </children>
+                        </VBox>
+                        <Button mnemonicParsing="false" styleClass="button-action-ghost" text="Ver detalle" />
+                     </children>
+                  </HBox>
+
+                  <HBox spacing="15.0" styleClass="alert-card, alert-warning">
+                     <children>
+                        <Circle radius="6.0" fill="#ffcc00" />
+                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label styleClass="alert-header" text="Recordatorio: Pago de Alquiler" />
+                              <Label styleClass="alert-body" text="Mañana vence el plazo para registrar el pago del alquiler compartido." wrapText="true" />
+                           </children>
+                        </VBox>
+                        <Button mnemonicParsing="false" styleClass="button-action" text="Pagar ahora" />
+                     </children>
+                  </HBox>
+
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </children>
+</VBox>

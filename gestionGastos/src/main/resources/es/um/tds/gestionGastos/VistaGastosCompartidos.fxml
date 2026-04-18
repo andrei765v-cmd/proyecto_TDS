@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="20" styleClass="dialog-container" stylesheets="@base_style.css, @tabla_style.css, @gasto_compartido_style.css"
+		xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" >
+		
+		<padding>
+        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+    </padding>
+    
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <Label text="Resumen de Saldos" styleClass="section-title"/>
+        <Region HBox.hgrow="ALWAYS" />
+        <Button text="Configurar Cuenta / Porcentajes" styleClass="button-action-ghost"/>
+    </HBox>
+
+    <HBox spacing="20" fx:id="balancesContainer">
+        <VBox styleClass="balance-card">
+            <Label text="Raquel" styleClass="balance-name"/>
+            <Label text="+ 17.00 €" styleClass="balance-amount, text-positive"/>
+        </VBox>
+        
+        <VBox styleClass="balance-card">
+            <Label text="Luis" styleClass="balance-name"/>
+            <Label text="- 4.00 €" styleClass="balance-amount, text-negative"/>
+        </VBox>
+
+        <VBox styleClass="balance-card">
+            <Label text="María" styleClass="balance-name"/>
+            <Label text="- 13.00 €" styleClass="balance-amount, text-negative"/>
+        </VBox>
+    </HBox>
+
+    <VBox styleClass="card-container" VBox.vgrow="ALWAYS">
+        <TableView styleClass="modern-table" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn text="Fecha" prefWidth="100"/>
+                <TableColumn text="Descripción" prefWidth="200"/>
+                <TableColumn text="Pagado por" prefWidth="120"/>
+                <TableColumn text="Reparto" prefWidth="120"/> <TableColumn text="Total" prefWidth="100"/>
+            </columns>
+             <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+             </columnResizePolicy>
+        </TableView>
+    </VBox>
+</VBox>

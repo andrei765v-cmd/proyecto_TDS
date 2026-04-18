@@ -5,10 +5,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="900.0" 
-            styleClass="main-container" stylesheets="@style.css" 
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="700.0" minWidth="1000.0" 
+            styleClass="main-container" stylesheets="@base_style.css, @tabla_style.css" 
             xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="es.um.tds.gestionGastos.Controladores.ControladorPrincipal">		<!-- Contrololador con la lógica de la UI -->
+            fx:controller="es.um.tds.gestionGastos.Controladores.ControladorPrincipal">		<!-- Contrololador principal -->
    
    <top>
       <VBox spacing="0">
@@ -25,14 +25,16 @@
                   </Label>
                   <TabPane fx:id="mainTabPane" tabClosingPolicy="UNAVAILABLE" styleClass="main-tabs">
                     <tabs>
-                      <Tab text="Dashboard" />
-                      <Tab text="Mis Gastos" />
-                      <Tab text="Gastos Compartidos" />
-                      <Tab fx:id="tabAlertas" text="Alertas" />
+                      <Tab fx:id="tabMisGastos" text="Mis Gastos" />
+                      <Tab fx:id="tabDashboard" text="Dashboard" />
+                      <Tab fx:id="tabGastosCompartidos" text="Gastos Compartidos" />
+                      <Tab fx:id="tabAlertas" text="Historial Alertas" />
                     </tabs>
                   </TabPane>
                   <Region HBox.hgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" styleClass="button-add" text="+ Nuevo Gasto" />
+                  <Button mnemonicParsing="false" styleClass="button-secondary" text="Importar CSV/Bancario" />
+                  <Button mnemonicParsing="false" styleClass="button-add" text="+ Nueva Alerta" onAction="#abrirModalNuevaAlerta"/>
+                  <Button mnemonicParsing="false" styleClass="button-add" text="+ Nuevo Gasto" onAction="#abrirModalNuevoGasto"/>
                </children>
             </HBox>
             
@@ -41,18 +43,35 @@
                   <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                </padding>
                <children>
-                  <DatePicker promptText="Fecha" styleClass="dark-datepicker" />
-                  <ComboBox prefWidth="150.0" promptText="Categoría" styleClass="dark-combo" />
-                  <ComboBox prefWidth="150.0" promptText="Método Pago" styleClass="dark-combo" />
-                  <Button mnemonicParsing="false" styleClass="button-filter" text="Filtrar" />
+               	  <Label text="Filtrar por:" textFill="#b2b2b2" />
+                  
+                  <DatePicker promptText="Desde" styleClass="dark-datepicker" prefWidth="130"/>	<!-- Fecha inicio -->
+                  <DatePicker promptText="Hasta" styleClass="dark-datepicker" prefWidth="130"/>	<!-- Fecha fin -->
+                  
+                  <MenuButton mnemonicParsing="false" styleClass="dark-combo" text="Meses">	<!-- Desplegable meses -->
+                    <items>
+                      <CheckMenuItem text="Enero" />
+                      <CheckMenuItem text="Febrero" />
+                      </items>
+                  </MenuButton>
+                  <MenuButton mnemonicParsing="false" styleClass="dark-combo" text="Categorías">	<!-- Desplegable categorias -->
+                    <items>
+                      <CheckMenuItem text="Alimentación" />
+                      <CheckMenuItem text="Transporte" />
+                      <CheckMenuItem text="Ocio" />
+                    </items>
+                  </MenuButton>
+                  
+                  <Button mnemonicParsing="false" styleClass="button-filter" text="Aplicar Filtros" />	<!-- Boton filtrar -->
+                  <Region HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
          </children>
       </VBox>
    </top>
-
-	<center>
-   <StackPane fx:id="contentArea">
+ 
+   <center>
+   	<StackPane fx:id="contentArea">
       <children>
          <AnchorPane>
             <children>
@@ -75,9 +94,9 @@
             </children>
          </AnchorPane>
       </children>
-   </StackPane>
-</center>
-	
+   	</StackPane>
+   </center>
+
    <bottom>
       <HBox alignment="CENTER_RIGHT" spacing="20.0" styleClass="status-bar">
          <padding>

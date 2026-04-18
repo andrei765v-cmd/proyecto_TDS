@@ -10,6 +10,8 @@ module es.um.tds.gestionGastos {
 
     exports es.um.tds.gestionGastos;
     exports es.um.tds.gestionGastos.modelo;
+    exports es.um.tds.gestionGastos.modelo.CuentaCompartida;
+    exports es.um.tds.gestionGastos.modelo.Alertas;
     exports es.um.tds.gestionGastos.Controladores;
     exports es.um.tds.gestionGastos.interfaz;
 }

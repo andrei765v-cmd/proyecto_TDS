@@ -1,150 +1,34 @@
-/* Paleta de Colores Dark Mode */
 .root {
-    -fx-base: #1e1e1e;
-    -fx-background-color: #121212;
-    -fx-accent: #00a8ff;
-    -fx-control-inner-background: #1e1e1e;
-}
-
-/* Header y Tabs */
-.header-banner {
-    -fx-background-color: #1e1e1e;
-    -fx-border-color: #333333;
-    -fx-border-width: 0 0 1 0;
-}
-
-.main-tabs .tab {
-    -fx-background-color: transparent;
-    -fx-padding: 10 15 10 15;
-}
-
-.main-tabs .tab:selected {
-    -fx-background-color: transparent;
-    -fx-border-color: #00a8ff;
-    -fx-border-width: 0 0 3 0;
-}
-
-.main-tabs .tab .label {
-    -fx-text-fill: #b2b2b2;
-}
-
-.main-tabs .tab:selected .label {
-    -fx-text-fill: white;
-}
-
-/* Botones */
-.button-add {
-    -fx-background-color: #00a8ff;
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-background-radius: 5;
-    -fx-padding: 8 15;
-}
-
-.button-add:hover { -fx-background-color: #0086cc; }
-
-/* Contenedor tipo "Card" con bordes redondeados */
-.card-container {
-    -fx-background-color: #1e1e1e;
-    -fx-background-radius: 10;
-    -fx-border-radius: 10;
-    -fx-border-color: #333333;
-    -fx-padding: 1; /* para que la tabla no tape el borde redondeado */
-}
-
-/* Tabla Moderna */
-.modern-table {
-    -fx-background-color: transparent;
-    -fx-background-insets: 0;
-}
-
-.modern-table .column-header-background {
-    -fx-background-color: #252525;
-}
-
-.modern-table .column-header {
-    -fx-background-color: transparent;
-    -fx-size: 40;
-}
-
-.modern-table .cell {
-    -fx-text-fill: #e0e0e0;
-    -fx-alignment: center-left;
-    -fx-border-color: #2d2d2d;
-    -fx-border-width: 0 0 1 0;
-}
-
-/* Status Bar */
-.status-bar {
-    -fx-background-color: #1e1e1e;
-    -fx-border-color: #333333;
-    -fx-border-width: 1 0 0 0;
-}
-
-.label-total {
-    -fx-text-fill: #00ff88;
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
-}
-
-/* Estilos para la sección de Alertas */
-.section-title {
-    -fx-font-size: 22px;
-    -fx-font-weight: bold;
-    -fx-text-fill: white;
-}
-
-.badge-count {
-    -fx-background-color: #333333;
-    -fx-text-fill: #00a8ff;
-    -fx-padding: 3 10;
-    -fx-background-radius: 15;
-    -fx-font-size: 12px;
-}
-
-.transparent-scroll {
-    -fx-background-color: transparent;
-    -fx-background-insets: 0;
-}
-.transparent-scroll .viewport {
-    -fx-background-color: transparent;
-}
-
-/* Tarjeta de Alerta Base */
-.alert-card {
-    -fx-background-color: #1e1e1e;
-    -fx-padding: 15;
-    -fx-background-radius: 10;
-    -fx-border-radius: 10;
-    -fx-border-width: 0 0 0 4; /* Borde lateral de color */
-    -fx-alignment: center-left;
-}
-
-.alert-critical { -fx-border-color: #ff4d4d; }
-.alert-warning { -fx-border-color: #ffcc00; }
-.alert-info { -fx-border-color: #00a8ff; }
-
-.alert-header {
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-font-size: 14px;
-}
-
-.alert-body {
-    -fx-text-fill: #b2b2b2;
+    -fx-accent: #3b6fa8;
+    -fx-focus-color: -fx-accent;
+    -fx-faint-focus-color: rgba(59, 111, 168, 0.25);
     -fx-font-size: 13px;
 }
 
-/* Botones dentro de alertas */
-.button-action {
-    -fx-background-color: #333333;
-    -fx-text-fill: white;
-    -fx-cursor: hand;
+.menu-bar {
+    -fx-background-color: #eef1f5;
 }
 
-.button-action-ghost {
-    -fx-background-color: transparent;
-    -fx-border-color: #444444;
-    -fx-text-fill: #b2b2b2;
-    -fx-cursor: hand;
+.tool-bar {
+    -fx-background-color: #f6f7f9;
+    -fx-padding: 6 10;
+    -fx-spacing: 6;
+}
+
+.tab-pane .tab:selected .tab-label {
+    -fx-text-fill: -fx-accent;
+    -fx-font-weight: bold;
+}
+
+.table-view .column-header .label {
+    -fx-font-weight: bold;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #fafbfc;
+}
+
+.button:default {
+    -fx-base: -fx-accent;
+    -fx-text-fill: white;
 }

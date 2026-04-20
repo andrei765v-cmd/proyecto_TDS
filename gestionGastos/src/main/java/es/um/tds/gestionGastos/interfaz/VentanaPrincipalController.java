@@ -1,7 +1,10 @@
 package es.um.tds.gestionGastos.interfaz;
 
 import java.io.IOException;
+
 import es.um.tds.gestionGastos.Controladores.ControladorPrincipal;
+import es.um.tds.gestionGastos.modelo.Gasto;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -9,23 +12,32 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class VentanaPrincipalController {
 
+	private ControladorPrincipal controladorPrincipal = ControladorPrincipal.getInstancia();
+	
     @FXML private TabPane mainTabPane;
-    @FXML private StackPane contentArea;
+    @FXML private StackPane contentArea;	// Contenedor central
     @FXML private Tab tabMisGastos;
-    @FXML private Tab tabCompartidos;
+    @FXML private Tab tabDashboard;
+    @FXML private Tab tabGastosCompartidos;
     @FXML private Tab tabAlertas;
-
+    @FXML private TableView<Gasto> tablaGastos;
+    
+    private Node vistaOriginalTabla;	// tabla inicial
+    
     @FXML
     public void initialize() {
-        // Al iniciar, cargamos la pestaña que esté seleccionada por defecto
-        cargarTab(mainTabPane.getSelectionModel().getSelectedItem());
-
+        // Guardamos la vista inicial para la navegación
+        if (!contentArea.getChildren().isEmpty()) {
+            vistaOriginalTabla = contentArea.getChildren().get(0);
+        }
         // Escuchar cambios de pestaña
         mainTabPane.getSelectionModel().selectedItemProperty().addListener((obs, oldTab, newTab) -> {
             cargarTab(newTab);
@@ -35,25 +47,34 @@ public class VentanaPrincipalController {
     private void cargarTab(Tab tab) {
         if (tab == null) return;
         
+        
         if (tab == tabMisGastos) {
-            cargarSubVista("/es/um/tds/gestionGastos/VistaMisGastos.fxml");
-        } else if (tab == tabCompartidos) {
-            cargarSubVista("/es/um/tds/gestionGastos/VistaCompartidos.fxml");
+        	contentArea.getChildren().setAll(vistaOriginalTabla);	// mostrar la tabla original
+        } else if (tab == tabGastosCompartidos) {
+            cargarVista("/es/um/tds/gestionGastos/VistaGastosCompartidos.fxml");
         } else if (tab == tabAlertas) {
-            cargarSubVista("/es/um/tds/gestionGastos/VistaAlertas.fxml");
+            cargarVista("/es/um/tds/gestionGastos/VistaAlertas.fxml");
+        } else if (tab == tabDashboard) {
+            cargarVista("/es/um/tds/gestionGastos/VistaDashboard.fxml");
         }
     }
 
-    private void cargarSubVista(String ruta) {
+    private void cargarVista(String fxml) {
         try {
-            Node nodo = FXMLLoader.load(getClass().getResource(ruta));
-            contentArea.getChildren().setAll(nodo);
+            Node vista = FXMLLoader.load(getClass().getResource(fxml));
+            contentArea.getChildren().setAll(vista);
         } catch (IOException e) {
-            System.err.println("Error cargando la subvista: " + ruta);
+        	System.err.println("Error cargando la vista: " + fxml);
             e.printStackTrace();
         }
     }
-
+    
+    @FXML
+    private void refrescarTabla() {
+        // Obtener datos del controlador
+        tablaGastos.getItems().setAll(controladorPrincipal.getGastosPersonales());
+    }
+    
     @FXML
     private void onNuevoGasto() {
         abrirVentanaModal("/es/um/tds/gestionGastos/VistaNuevoGasto.fxml", "Añadir Gasto");
@@ -69,10 +90,12 @@ public class VentanaPrincipalController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             Parent root = loader.load();
             Stage stage = new Stage();
-            stage.setTitle(titulo);
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(new Scene(root));
             stage.showAndWait();
+            
+            refrescarTabla();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -68,4 +68,12 @@ public class ControladorPrincipal {
     public Set<Categoria> getCategorias() {
         return controladorCategoria.getCategorias();
     }
+    
+    public void registrarAlertaMensual(double limite, Categoria cat) {
+        controladorAlerta.crearMensual(limite, cat);
+    }
+
+    public void registrarAlertaSemanal(double limite, Categoria cat) {
+        controladorAlerta.crearSemanal(limite, cat);
+    }
 }

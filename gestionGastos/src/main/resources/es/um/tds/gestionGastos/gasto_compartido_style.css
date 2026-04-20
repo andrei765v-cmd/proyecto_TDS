@@ -1,0 +1,21 @@
+/* Tarjetas de Saldo Compartido */
+.balance-card {
+    -fx-background-color: #252525;
+    -fx-padding: 15 25;
+    -fx-background-radius: 8;
+    -fx-border-color: #333333;
+    -fx-border-radius: 8;
+    -fx-alignment: center;
+    -fx-min-width: 150px;
+}
+
+.balance-name {
+    -fx-text-fill: #b2b2b2;
+    -fx-font-size: 14px;
+}
+
+.balance-amount {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-padding: 5 0 0 0;
+}

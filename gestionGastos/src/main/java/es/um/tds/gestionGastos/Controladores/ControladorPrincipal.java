@@ -43,8 +43,9 @@ public class ControladorPrincipal {
     public ControladorUsuario getControladorUsuario() { return controladorUsuario; }
     public ControladorAlerta getControladorAlerta() { return controladorAlerta; }
 
-    // --- Operaciones fachada (delegan) ---
+    // --- Operaciones fachada ---
 
+    // Gastos
     public void registrarGastoPersonal(double cantidad, LocalDate fecha, String descripcion, Categoria categoria) {
         controladorGasto.registrar(cantidad, fecha, descripcion, categoria);
     }
@@ -53,6 +54,7 @@ public class ControladorPrincipal {
         return controladorGasto.getGastos();
     }
 
+    // Cuentas
     public void crearCuentaEquitativa(String nombre, List<Usuario> participantes) {
         controladorCuenta.crearEquitativa(nombre, participantes);
     }
@@ -64,11 +66,17 @@ public class ControladorPrincipal {
     public Map<String, CuentaCompartida> getCuentas() {
         return controladorCuenta.getCuentas();
     }
-
+    
+    public Map<Usuario, Double> obtenerSaldosDeCuenta(String nombreCuenta) {
+    	return controladorCuenta.obtenerSaldosDeCuenta(nombreCuenta);
+    }
+    
+    // Categorias
     public Set<Categoria> getCategorias() {
         return controladorCategoria.getCategorias();
     }
     
+    // Alertas
     public void registrarAlertaMensual(double limite, Categoria cat) {
         controladorAlerta.crearMensual(limite, cat);
     }

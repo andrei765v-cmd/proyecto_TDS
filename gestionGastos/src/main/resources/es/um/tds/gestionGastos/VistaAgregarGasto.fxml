@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="25.0" styleClass="dialog-container" stylesheets="@base_style.css, @modal_formulario_style.css"
+		xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+		fx:controller="es.um.tds.gestionGastos.interfaz.AgregarGastoController">
+   <padding>
+      <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+   </padding>
+   <children>
+      <Label styleClass="dialog-title" text="Añadir Nuevo Gasto" />
+      
+      <VBox spacing="15.0">
+         <children>
+            
+            <VBox spacing="5.0">
+               <children>
+                  <Label styleClass="form-label" text="Monto (€)" />
+                  <TextField fx:id="txtMonto" promptText="0.00" styleClass="dark-input, amount-input" />	<!-- Monto (txtMonto) -->
+               </children>
+            </VBox>
+            
+            <VBox spacing="5.0">
+               <children>
+                  <Label styleClass="form-label" text="Descripción" />
+                  <TextField fx:id="txtDescripcion" promptText="Ej. Cena de fin de semana, Internet..." styleClass="dark-input" />	<!-- Descripcion (txtDescripcion) -->
+               </children>
+            </VBox>
+
+            <HBox spacing="15.0">
+               <children>
+                  <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label styleClass="form-label" text="Categoría" />
+                        <ComboBox fx:id="comboCategoria" maxWidth="Infinity" promptText="Seleccionar..." styleClass="dark-input" />	<!-- Categoria (comboCategoria) -->
+                     </children>
+                  </VBox>
+                  <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label styleClass="form-label" text="Fecha" />
+                        <DatePicker fx:id="pickerFecha" maxWidth="Infinity" promptText="dd/mm/aaaa" styleClass="dark-input" />	<!-- Fecha (pickerFecha) -->
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            
+         </children>
+      </VBox>
+      
+      <HBox alignment="CENTER_RIGHT" spacing="15.0">
+         <children>
+            <Button mnemonicParsing="false" styleClass="button-secondary" text="Cancelar" onAction="#cancelar"/>
+            <Button mnemonicParsing="false" styleClass="button-primary" text="Guardar Gasto" onAction="#guardarGasto"/>
+         </children>
+      </HBox>
+   </children>
+</VBox>

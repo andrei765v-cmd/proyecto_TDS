@@ -12,7 +12,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -28,16 +30,33 @@ public class VentanaPrincipalController {
     @FXML private Tab tabDashboard;
     @FXML private Tab tabGastosCompartidos;
     @FXML private Tab tabAlertas;
+    
+    // tabla
     @FXML private TableView<Gasto> tablaGastos;
+    @FXML private TableColumn<Gasto, String> colFecha;
+    @FXML private TableColumn<Gasto, String> colDescripcion;
+    @FXML private TableColumn<Gasto, String> colCategoria;
+    @FXML private TableColumn<Gasto, String> colUsuario;
+    @FXML private TableColumn<Gasto, Double> colMonto;
     
     private Node vistaOriginalTabla;	// tabla inicial
     
     @FXML
     public void initialize() {
+    	// configurar columnas tabla
+    	colFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
+        colDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
+        colCategoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
+        colUsuario.setCellValueFactory(new PropertyValueFactory<>("usuario"));
+        colMonto.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
+        
         // Guardamos la vista inicial para la navegación
         if (!contentArea.getChildren().isEmpty()) {
             vistaOriginalTabla = contentArea.getChildren().get(0);
         }
+        // Cargar datos iniciales si los hubiera
+        refrescarTabla();
+        
         // Escuchar cambios de pestaña
         mainTabPane.getSelectionModel().selectedItemProperty().addListener((obs, oldTab, newTab) -> {
             cargarTab(newTab);
@@ -77,14 +96,23 @@ public class VentanaPrincipalController {
     
     @FXML
     private void onNuevoGasto() {
-        abrirVentanaModal("/es/um/tds/gestionGastos/VistaNuevoGasto.fxml", "Añadir Gasto");
+        abrirVentanaModal("/es/um/tds/gestionGastos/VistaAgregarGasto.fxml", "Añadir Gasto");
     }
 
     @FXML
+    private void onNuevaAlerta() {
+        abrirVentanaModal("/es/um/tds/gestionGastos/VistaAgregarAlerta.fxml", "Añadir Gasto");
+    }
+    
+    @FXML
     private void onNuevoUsuario() {
-        abrirVentanaModal("/es/um/tds/gestionGastos/VistaNuevoUsuario.fxml", "Nuevo Usuario");
+        abrirVentanaModal("/es/um/tds/gestionGastos/VistaAgregarUsuario.fxml", "Nuevo Usuario");
     }
 
+    @FXML
+    private void onNuevaCuenta() {
+    	abrirVentanaModal("/es/um/tds/gestionGastos/VistaAgregarCuenta.fxml", "Nueva Cuenta");
+    }
     private void abrirVentanaModal(String fxml, String titulo) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));

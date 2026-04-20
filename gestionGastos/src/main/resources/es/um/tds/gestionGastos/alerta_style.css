@@ -1,0 +1,48 @@
+/* Estilos para la sección de Alertas */
+
+.badge-count {
+    -fx-background-color: #333333;
+    -fx-text-fill: #00a8ff;
+    -fx-padding: 3 10;
+    -fx-background-radius: 15;
+    -fx-font-size: 12px;
+}
+
+/* Tarjeta de Alerta Base */
+.alert-card {
+    -fx-background-color: #1e1e1e;
+    -fx-padding: 15;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-width: 0 0 0 4; /* Borde lateral de color */
+    -fx-alignment: center-left;
+}
+
+.alert-critical { -fx-border-color: #ff4d4d; }
+.alert-warning { -fx-border-color: #ffcc00; }
+.alert-info { -fx-border-color: #00a8ff; }
+
+.alert-header {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.alert-body {
+    -fx-text-fill: #b2b2b2;
+    -fx-font-size: 13px;
+}
+
+/* Botones dentro de alertas */
+.button-action {
+    -fx-background-color: #333333;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+
+.button-action-ghost {
+    -fx-background-color: transparent;
+    -fx-border-color: #444444;
+    -fx-text-fill: #b2b2b2;
+    -fx-cursor: hand;
+}

@@ -1,0 +1,103 @@
+/* Paleta de Colores Dark Mode */
+.root {
+    -fx-base: #1e1e1e;
+    -fx-background-color: #121212;
+    -fx-accent: #00a8ff;
+    -fx-control-inner-background: #1e1e1e;
+}
+
+
+.transparent-scroll {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+}
+.transparent-scroll .viewport {
+    -fx-background-color: transparent;
+}
+.section-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+/* Header y Tabs */
+.header-banner {
+    -fx-background-color: #1e1e1e;
+    -fx-border-color: #333333;
+    -fx-border-width: 0 0 1 0;
+}
+
+.main-tabs .tab {
+    -fx-background-color: transparent;
+    -fx-padding: 10 15 10 15;
+}
+
+.main-tabs .tab:selected {
+    -fx-background-color: transparent;
+    -fx-border-color: #00a8ff;
+    -fx-border-width: 0 0 3 0;
+}
+
+.main-tabs .tab .label {
+    -fx-text-fill: #b2b2b2;
+}
+
+.main-tabs .tab:selected .label {
+    -fx-text-fill: white;
+}
+
+/* Botones */
+.button-add {
+    -fx-background-color: #00a8ff;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-padding: 8 15;
+}
+
+.button-add:hover { -fx-background-color: #0086cc; }
+
+.button-primary {
+    -fx-background-color: #00a8ff;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+}
+
+.button-primary:hover { -fx-background-color: #0086cc; }
+
+.button-secondary {
+    -fx-background-color: transparent;
+    -fx-text-fill: #b2b2b2;
+    -fx-border-color: #444444;
+    -fx-border-radius: 6;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+}
+
+.button-secondary:hover { 
+    -fx-background-color: #2a2a2a; 
+    -fx-text-fill: white;
+}
+
+/* Status Bar */
+.status-bar {
+    -fx-background-color: #1e1e1e;
+    -fx-border-color: #333333;
+    -fx-border-width: 1 0 0 0;
+}
+
+.label-total {
+    -fx-text-fill: #00ff88;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+/* Colores de texto para estados financieros */
+.text-positive { -fx-text-fill: #00ff88; }
+.text-negative { -fx-text-fill: #ff4d4d; }
+.text-danger {
+	-fx-text-fill: #ff4d4d;
+	-fx-border-color: #ff4d4d;
+}

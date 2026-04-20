@@ -1,0 +1,64 @@
+/* Tarjetas de Resumen */
+.summary-card {
+    -fx-background-color: #1e1e1e;
+    -fx-padding: 20;
+    -fx-background-radius: 10;
+    -fx-border-color: #333333;
+    -fx-border-radius: 10;
+}
+
+.summary-label {
+    -fx-text-fill: #b2b2b2;
+    -fx-font-size: 14px;
+}
+
+.summary-value {
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+/* Títulos dentro de las tarjetas */
+.card-title {
+    -fx-text-fill: #e0e0e0;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+/* Personalización de Gráficos */
+.chart {
+    -fx-padding: 10;
+}
+
+.chart-content {
+    -fx-padding: 10;
+}
+
+.chart-title {
+    -fx-text-fill: white;
+}
+
+.axis {
+    -fx-tick-label-fill: #b2b2b2;
+    -fx-tick-mark-visible: false;
+}
+
+.axis-label {
+    -fx-text-fill: #b2b2b2;
+}
+
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+.chart-vertical-grid-lines, .chart-horizontal-grid-lines {
+    -fx-stroke: #333333;
+}
+
+/* Colores de las porciones del PieChart y barras */
+.default-color0.chart-pie { -fx-pie-color: #00a8ff; }
+.default-color1.chart-pie { -fx-pie-color: #00ff88; }
+.default-color2.chart-pie { -fx-pie-color: #ffcc00; }
+.default-color3.chart-pie { -fx-pie-color: #ff4d4d; }
+
+.default-color0.chart-bar { -fx-bar-fill: #00a8ff; }

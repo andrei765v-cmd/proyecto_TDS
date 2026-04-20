@@ -5,7 +5,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.Circle?>
 
-<VBox spacing="20.0" styleClass="alerts-container" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox spacing="20.0" styleClass="alerts-container" stylesheets="@base_style.css, @alerta_style.css"
+		xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <padding>
       <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
    </padding>
@@ -13,7 +14,7 @@
       <HBox alignment="CENTER_LEFT" spacing="10.0">
          <children>
             <Label styleClass="section-title" text="Alertas y Notificaciones" />
-            <Label styleClass="badge-count" text="3 Pendientes" />
+            <Label styleClass="badge-count" text="3 Pendientes" />			<!-- Alertas pendientes (alertasPendientes) -->
          </children>
       </HBox>
 
@@ -22,6 +23,8 @@
             <VBox spacing="15.0">
                <children>
                   
+                  <!-- Alertas de ejemplo -->
+                  <!-- Alerta de presupuesto excedido -->
                   <HBox spacing="15.0" styleClass="alert-card, alert-critical">
                      <children>
                         <Circle radius="6.0" fill="#ff4d4d" />
@@ -34,7 +37,8 @@
                         <Button mnemonicParsing="false" styleClass="button-action" text="Ajustar" />
                      </children>
                   </HBox>
-
+                  
+				  <!-- Alerta informativa -->
                   <HBox spacing="15.0" styleClass="alert-card, alert-info">
                      <children>
                         <Circle radius="6.0" fill="#00a8ff" />
@@ -47,7 +51,8 @@
                         <Button mnemonicParsing="false" styleClass="button-action-ghost" text="Ver detalle" />
                      </children>
                   </HBox>
-
+				  
+				  <!-- Alerta de advertencia -->
                   <HBox spacing="15.0" styleClass="alert-card, alert-warning">
                      <children>
                         <Circle radius="6.0" fill="#ffcc00" />

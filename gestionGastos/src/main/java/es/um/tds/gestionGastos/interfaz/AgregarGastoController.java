@@ -5,7 +5,7 @@ import java.util.function.UnaryOperator;
 
 import es.um.tds.gestionGastos.Controladores.ControladorPrincipal;
 import es.um.tds.gestionGastos.modelo.Categoria;
-
+import es.um.tds.gestionGastos.modelo.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -19,6 +19,8 @@ public class AgregarGastoController {
 
     @FXML private TextField txtMonto;
     @FXML private TextField txtDescripcion;
+    @FXML private ComboBox<Usuario> comboUsuario;
+    @FXML private ComboBox<String> comboCuenta;
     @FXML private ComboBox<Categoria> comboCategoria;
     @FXML private DatePicker pickerFecha;
 
@@ -37,11 +39,16 @@ public class AgregarGastoController {
         
         txtMonto.setTextFormatter(new TextFormatter<>(filter));
 
+        // Cargar usuarios
+        comboUsuario.getItems().addAll(controladorPrincipal.getUsuarios());
+        
         // Cargar categorias
         comboCategoria.getItems().addAll(controladorPrincipal.getCategorias());
         
         // Fecha por defecto
         pickerFecha.setValue(LocalDate.now());
+        
+        comboCuenta.getItems().addAll(controladorPrincipal.getCuentas().keySet());
     }
 
     @FXML
@@ -50,19 +57,20 @@ public class AgregarGastoController {
             // Validación de datos
     		String montoStr = txtMonto.getText();
             String descripcion = txtDescripcion.getText();
+            Usuario usuario = comboUsuario.getValue();
+            String cuenta = comboCuenta.getValue();
             LocalDate fecha = pickerFecha.getValue();
             Categoria categoria = comboCategoria.getValue();
 
-            if (/*monto == null || monto.isEmpty() ||*/ descripcion == null || descripcion.isEmpty() || categoria == null) {
-            	mostrarError("Campos incompletos", "Por favor, rellena el importe, la descripción y seleccione una categoría.");
+            if (/*monto == null || monto.isEmpty() ||*/ descripcion == null || descripcion.isEmpty() || usuario == null || cuenta == null || categoria == null) {
+            	mostrarError("Campos incompletos", "Por favor, rellena todos los campos.");
                 return;
             }
             double monto = Double.parseDouble(montoStr);
 
-            System.out.println("Guardando gasto: " + descripcion + " por un valor de " + monto + "€");
+            System.out.println("Guardando gasto de " + usuario + ": " + descripcion + " por un valor de " + monto + "€");
             // Creacion del gasto
-            controladorPrincipal.registrarGastoPersonal(monto, fecha, descripcion, categoria);
-            
+            controladorPrincipal.registrarGastoEnCuenta(monto, fecha, descripcion, categoria, usuario, cuenta);
             System.out.println("Gasto registrado con éxito a través del ControladorPrincipal.");
             cerrarVentana();
 

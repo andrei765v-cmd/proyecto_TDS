@@ -22,7 +22,21 @@
                   <TextField fx:id="txtMonto" promptText="0.00" styleClass="dark-input, amount-input" />	<!-- Monto (txtMonto) -->
                </children>
             </VBox>
+
+			<VBox spacing="5.0">
+   			   <children>
+     			  <Label styleClass="form-label" text="Usuario Responsable" />
+      			  <ComboBox fx:id="comboUsuario" maxWidth="Infinity" promptText="Seleccionar usuario..." styleClass="dark-input" /> <!-- Usuario (comboUsuario) -->
+			   </children>
+			</VBox>
             
+            <VBox spacing="5.0">
+				<children>
+					<Label styleClass="form-label" text="Cuenta Destino" />
+					<ComboBox fx:id="comboCuenta" maxWidth="Infinity" promptText="Seleccionar cuenta..." styleClass="dark-input" />
+				</children>
+			</VBox>
+
             <VBox spacing="5.0">
                <children>
                   <Label styleClass="form-label" text="Descripción" />

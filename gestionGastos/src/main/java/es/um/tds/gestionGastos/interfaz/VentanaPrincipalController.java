@@ -1,9 +1,10 @@
 package es.um.tds.gestionGastos.interfaz;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import es.um.tds.gestionGastos.Controladores.ControladorPrincipal;
-import es.um.tds.gestionGastos.modelo.Gasto;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,9 +13,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -24,74 +22,59 @@ public class VentanaPrincipalController {
 
 	private ControladorPrincipal controladorPrincipal = ControladorPrincipal.getInstancia();
 	
+	private Map<String, Node> cacheVistas = new HashMap<>();
+
     @FXML private TabPane mainTabPane;
-    @FXML private StackPane contentArea;	// Contenedor central
+    @FXML private StackPane contentArea;
     @FXML private Tab tabMisGastos;
     @FXML private Tab tabDashboard;
     @FXML private Tab tabGastosCompartidos;
     @FXML private Tab tabAlertas;
     
-    // tabla
-    @FXML private TableView<Gasto> tablaGastos;
-    @FXML private TableColumn<Gasto, String> colFecha;
-    @FXML private TableColumn<Gasto, String> colDescripcion;
-    @FXML private TableColumn<Gasto, String> colCategoria;
-    @FXML private TableColumn<Gasto, String> colUsuario;
-    @FXML private TableColumn<Gasto, Double> colMonto;
-    
-    private Node vistaOriginalTabla;	// tabla inicial
+    private Node vistaActual;
     
     @FXML
     public void initialize() {
-    	// configurar columnas tabla
-    	colFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
-        colDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
-        colCategoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
-        colUsuario.setCellValueFactory(new PropertyValueFactory<>("usuario"));
-        colMonto.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
-        
-        // Guardamos la vista inicial para la navegación
-        if (!contentArea.getChildren().isEmpty()) {
-            vistaOriginalTabla = contentArea.getChildren().get(0);
-        }
-        // Cargar datos iniciales si los hubiera
-        refrescarTabla();
-        
-        // Escuchar cambios de pestaña
+    	cargarTab(tabMisGastos);
         mainTabPane.getSelectionModel().selectedItemProperty().addListener((obs, oldTab, newTab) -> {
             cargarTab(newTab);
         });
-    }
-
-    private void cargarTab(Tab tab) {
-        if (tab == null) return;
-        
-        
-        if (tab == tabMisGastos) {
-        	contentArea.getChildren().setAll(vistaOriginalTabla);	// mostrar la tabla original
-        } else if (tab == tabGastosCompartidos) {
-            cargarVista("/es/um/tds/gestionGastos/VistaGastosCompartidos.fxml");
-        } else if (tab == tabAlertas) {
-            cargarVista("/es/um/tds/gestionGastos/VistaAlertas.fxml");
-        } else if (tab == tabDashboard) {
-            cargarVista("/es/um/tds/gestionGastos/VistaDashboard.fxml");
         }
-    }
 
-    private void cargarVista(String fxml) {
+    private Node cargarNodo(String fxml) {
         try {
-            Node vista = FXMLLoader.load(getClass().getResource(fxml));
-            contentArea.getChildren().setAll(vista);
+            return FXMLLoader.load(getClass().getResource(fxml));
         } catch (IOException e) {
         	System.err.println("Error cargando la vista: " + fxml);
             e.printStackTrace();
+            return null;
+        }
+    }
+
+    private void cargarTab(Tab tab) {
+        if (tab == tabMisGastos) {
+            cargarVista("/es/um/tds/gestionGastos/VistaMisGastos.fxml");
+        } else if (tab == tabDashboard) {
+            cargarVista("/es/um/tds/gestionGastos/VistaDashboard.fxml");
+        } else if (tab == tabGastosCompartidos) {
+        	cargarVista("/es/um/tds/gestionGastos/VistaGastosCompartidos.fxml");
+        } else if (tab == tabAlertas) {        	
+        	cargarVista("/es/um/tds/gestionGastos/VistaAlertas.fxml");
         }
     }
     
-    @FXML
-    private void refrescarTabla() {
-        // Obtener datos del controlador
-        tablaGastos.getItems().setAll(controladorPrincipal.getGastosPersonales());
+    private void cargarVista(String fxml) {
+        try {
+            if (!cacheVistas.containsKey(fxml)) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+                Node vista = loader.load();
+                cacheVistas.put(fxml, vista);
+            }
+            // Esto NO cambia el diseño de las pestañas arriba, solo cambia el centro
+            contentArea.getChildren().setAll(cacheVistas.get(fxml)); 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     @FXML
@@ -113,6 +96,7 @@ public class VentanaPrincipalController {
     private void onNuevaCuenta() {
     	abrirVentanaModal("/es/um/tds/gestionGastos/VistaAgregarCuenta.fxml", "Nueva Cuenta");
     }
+    
     private void abrirVentanaModal(String fxml, String titulo) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
@@ -122,8 +106,6 @@ public class VentanaPrincipalController {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(new Scene(root));
             stage.showAndWait();
-            
-            refrescarTabla();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -7,12 +7,14 @@ public class Gasto {
     private LocalDate fecha;
     private String descripcion;
     private Categoria categoria;
+    private Usuario usuario;
 
-    public Gasto(double cantidad, LocalDate fecha, String descripcion, Categoria categoria) {
+    public Gasto(double cantidad, LocalDate fecha, String descripcion, Categoria categoria, Usuario usuario) {
         this.cantidad = cantidad;
         this.fecha = fecha;
         this.descripcion = descripcion;
         this.categoria = categoria;
+        this.usuario = usuario;
     }
 
     public double getCantidad() {
@@ -47,7 +49,15 @@ public class Gasto {
         this.categoria = categoria;
     }
 
-    public void editar(double nuevaCantidad, LocalDate nuevaFecha, String nuevaDescripcion, Categoria nuevaCategoria) {
+    public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public void editar(double nuevaCantidad, LocalDate nuevaFecha, String nuevaDescripcion, Categoria nuevaCategoria) {
         this.cantidad = nuevaCantidad;
         this.fecha = nuevaFecha;
         this.descripcion = nuevaDescripcion;

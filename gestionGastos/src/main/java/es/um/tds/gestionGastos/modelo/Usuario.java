@@ -23,4 +23,10 @@ public class Usuario {
     public int hashCode() {
         return nombre.toLowerCase().hashCode();
     }
+    
+    @Override
+	public String toString() {
+		return nombre.substring(0, 1).toUpperCase() +
+				nombre.substring(1).toLowerCase();
+	}
 }

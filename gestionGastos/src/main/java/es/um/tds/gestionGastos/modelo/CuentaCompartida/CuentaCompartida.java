@@ -9,6 +9,7 @@ import java.util.Map;
 import es.um.tds.gestionGastos.modelo.Categoria;
 import es.um.tds.gestionGastos.modelo.Gasto;
 import es.um.tds.gestionGastos.modelo.Usuario;
+import javafx.scene.Node;
 
 public abstract class CuentaCompartida {
 	private String nombre;
@@ -25,14 +26,32 @@ public abstract class CuentaCompartida {
 		return nombre;
 	}
 
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
 	public List<Gasto> getGastos() {
 	    return Collections.unmodifiableList(gastos);
+	}
+	
+	public List<Usuario> getUsuarios() {
+		return Collections.unmodifiableList(participantes);
 	}
 	
 	public Gasto registrarGasto(double cantidad, LocalDate fecha, String descripcion, Categoria categoria, Usuario pagador) {
 	    Gasto gasto = new Gasto(cantidad, fecha, descripcion, categoria, pagador);
 	    this.gastos.add(gasto);
 	    return gasto;
+	}
+
+	public void addGasto(Gasto gasto) {
+		if (!this.gastos.contains(gasto)) {
+			this.gastos.add(gasto);
+		}
+	}
+
+	public void eliminarGasto(Gasto gasto) {
+		this.gastos.remove(gasto);
 	}
 
 	public abstract Map<Usuario, Double> calcularSaldos();
@@ -45,4 +64,5 @@ public abstract class CuentaCompartida {
 	protected double totalDeLaCuenta() {
 		return gastos.stream().mapToDouble(Gasto::getCantidad).sum();
 	}
+
 }

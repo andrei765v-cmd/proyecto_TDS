@@ -1,11 +1,11 @@
 package es.um.tds.gestionGastos;
 
+import es.um.tds.gestionGastos.Controladores.ControladorPrincipal;
+import es.um.tds.gestionGastos.cli.CLI;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
 public class App extends Application {
@@ -23,6 +23,7 @@ public class App extends Application {
 	        // 3. Configuramos el escenario
 	        primaryStage.setTitle("Aplicacion TDS");
 	        primaryStage.setScene(scene);
+	        primaryStage.setOnCloseRequest(e -> ControladorPrincipal.getInstancia().guardarTodo());
 	        primaryStage.show();
 	        
 	    } catch (Exception e) {
@@ -32,6 +33,14 @@ public class App extends Application {
 	}
 
     public static void main(String[] args) {
+        // Si se pasa el argumento "--cli", arranca el modo de consola
+        for (String arg : args) {
+            if (arg.equalsIgnoreCase("--cli")) {
+                new CLI().iniciar();
+                return;
+            }
+        }
+        // Por defecto, arranca la interfaz gráfica
         launch(args);
     }
 }

@@ -3,24 +3,28 @@
 La aplicación puede ejecutarse en dos modos: Interfaz Gráfica (GUI) y Línea de Comandos (CLI).
 
 ## Requisitos
-- Java JDK 17 o superior.
+- Java JDK 21 o superior.
 - JavaFX (incluido en el proyecto mediante dependencias Maven/Gradle).
 
 ## Modos de Ejecución
 
+Asegurate de estar en la carpeta `target` para ejecutar los siguientes comandos:
+
 ### 1. Interfaz Gráfica (GUI) - Por defecto
 Para lanzar la aplicación con la interfaz moderna de escritorio:
 ```bash
-mvn javafx:run
+java -jar app-gestion-de-gastos.jar
 ```
-*(O ejecutando la clase `App.java` sin argumentos desde tu IDE)*.
+*(O ejecutando la clase `App.java` o `Launcher.java` sin argumentos desde tu IDE)*.
+
+Tambien puedes ejecutarlo haciendo **doble clic** en el .jar desde el explorador de archivos.
 
 ### 2. Línea de Comandos (CLI)
-Para lanzar la aplicación en modo terminal (útil para sistemas sin entorno gráfico o gestión rápida):
+Para lanzar la aplicación en modo terminal:
 ```bash
 java -jar nombre_del_archivo.jar --cli
 ```
-*(O pasando el argumento `--cli` al ejecutar la clase `App.java` en tu IDE)*.
+*(O pasando el argumento `--cli` al ejecutar la clase `App.java` o `Launcher.java` en tu IDE)*.
 
 ## Uso Básico
 

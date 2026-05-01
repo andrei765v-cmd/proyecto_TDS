@@ -8,18 +8,25 @@ Este proyecto permite a los usuarios gestionar sus finanzas personales, permitie
 
 ## Cómo Ejecutar el Proyecto
 
+Asegurate de estar en la carpeta `target` para ejecutar los siguientes comandos:
+
 ### Modo Gráfico (GUI)
 Arranca la interfaz visual por defecto:
 ```bash
-mvn javafx:run
+java -jar app-gestion-de-gastos.jar
 ```
+
+*(O ejecutando la clase `App.java` o `Launcher.java` sin argumentos desde tu IDE)*.
+
+Tambien puedes ejecutarlo haciendo **doble clic** en el .jar desde el explorador de archivos.
 
 ### Modo Consola (CLI)
 Arranca el modo interactivo por terminal:
 ```bash
-java -jar app.jar --cli
+java -jar app-gestion-de-gastos.jar --cli
 ```
-*(O añade `--cli` como argumento de ejecución en tu IDE)*.
+
+*(O añade el argumento `--cli` al ejecutar la clase `App.java` o `Launcher.java` en tu IDE)*.
 
 ## Documentación Relevante
 

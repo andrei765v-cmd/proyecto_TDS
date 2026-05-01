@@ -25,9 +25,9 @@ java -jar app.jar --cli
 
 Puedes encontrar detalles más específicos en los siguientes documentos:
 
-- **[Arquitectura y Diseño](docs/arquitectura.md)**: Patrones GRASP, Singleton, Factory, Adapter y estructura del proyecto.
-- **[Funcionalidades Detalladas](docs/funcionalidades.md)**: Explicación de gastos, cuentas compartidas, alertas e importación.
-- **[Guía de Usuario](docs/guia_usuario.md)**: Instrucciones paso a paso para configurar y usar la aplicación.
+- **[Arquitectura y Diseño](gestionGastos/docs/arquitectura.md)**: Patrones GRASP, Singleton, Factory, Adapter y estructura del proyecto.
+- **[Funcionalidades Detalladas](gestionGastos/docs/funcionalidades.md)**: Explicación de gastos, cuentas compartidas, alertas e importación.
+- **[Guía de Usuario](gestionGastos/docs/guia_usuario.md)**: Instrucciones paso a paso para configurar y usar la aplicación.
 
 ---
 Proyecto de **Tecnologías de Diseño de Software (TDS)**.

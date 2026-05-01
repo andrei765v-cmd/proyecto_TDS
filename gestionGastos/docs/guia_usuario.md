@@ -8,8 +8,6 @@ La aplicación puede ejecutarse en dos modos: Interfaz Gráfica (GUI) y Línea d
 
 ## Modos de Ejecución
 
-Asegurate de estar en la carpeta raiz para ejecutar los siguientes comandos:
-
 ### 1. Interfaz Gráfica (GUI) - Por defecto
 Para lanzar la aplicación con la interfaz moderna de escritorio:
 ```bash

@@ -41,18 +41,35 @@ public class CLI {
             mostrarMenu();
             String opcion = scanner.nextLine().trim();
             switch (opcion) {
-                case "1": registrarGasto();     break;
-                case "2": modificarGasto();     break;
-                case "3": eliminarGasto();      break;
-                case "4": listarGastos();       break;
-                case "5": cambiarUsuario();     break;
-                case "6": crearAlerta();        break;
-                case "7": listarAlertas();      break;
-                case "8": listarNotificaciones(); break;
-                case "9": importarGastos();     break;
+                case "1":
+                    registrarGasto();
+                    break;
+                case "2":
+                    modificarGasto();
+                    break;
+                case "3":
+                    eliminarGasto();
+                    break;
+                case "4":
+                    listarGastos();
+                    break;
+                case "5":
+                    cambiarUsuario();
+                    break;
+                case "6":
+                    crearAlerta();
+                    break;
+                case "7":
+                    listarAlertas();
+                    break;
+                case "8":
+                    listarNotificaciones();
+                    break;
+                case "9":
+                    importarGastos();
+                    break;
                 case "0":
-                    controlador.guardarTodo();
-                    System.out.println("Datos guardados. Saliendo del modo CLI. Hasta pronto!");
+                    System.out.println("Saliendo del modo CLI. Hasta pronto!");
                     salir = true;
                     break;
                 default:
@@ -145,7 +162,10 @@ public class CLI {
 
     private void listarGastos() {
         Usuario activo = controlador.getUsuarioActivo();
-        if (activo == null) { System.out.println("No hay usuario activo."); return; }
+        if (activo == null) {
+            System.out.println("No hay usuario activo.");
+            return;
+        }
 
         List<Gasto> gastos = controlador.getGastosPersonales(activo);
         if (gastos.isEmpty()) {
@@ -157,7 +177,7 @@ public class CLI {
         for (int i = 0; i < gastos.size(); i++) {
             Gasto g = gastos.get(i);
             System.out.printf("[%d] %s | %s | %.2f EUR | %s%n",
-                    i, g.getFecha(), g.getDescripcion(), g.getCantidad(),
+                    i + 1, g.getFecha(), g.getDescripcion(), g.getCantidad(),
                     g.getCategoria() != null ? g.getCategoria().getNombre() : "Sin categoria");
         }
     }
@@ -165,14 +185,19 @@ public class CLI {
     private void modificarGasto() {
         listarGastos();
         List<Gasto> gastos = controlador.getGastosPersonales(controlador.getUsuarioActivo());
-        if (gastos.isEmpty()) return;
+        if (gastos.isEmpty())
+            return;
 
         System.out.print("Indice del gasto a modificar: ");
         int idx = leerEnteroSeguro();
-        if (idx < 0 || idx >= gastos.size()) { System.out.println("Indice invalido."); return; }
+        if (idx < 0 || idx >= gastos.size()) {
+            System.out.println("Indice invalido.");
+            return;
+        }
 
         Gasto gasto = gastos.get(idx);
-        System.out.println("Modificando: " + gasto.getDescripcion() + " (deja en blanco para mantener el valor actual)");
+        System.out
+                .println("Modificando: " + gasto.getDescripcion() + " (deja en blanco para mantener el valor actual)");
 
         try {
             System.out.print("Nuevo monto [" + gasto.getCantidad() + "]: ");
@@ -185,10 +210,12 @@ public class CLI {
 
             System.out.print("Nueva descripcion [" + gasto.getDescripcion() + "]: ");
             String desc = scanner.nextLine().trim();
-            if (desc.isEmpty()) desc = gasto.getDescripcion();
+            if (desc.isEmpty())
+                desc = gasto.getDescripcion();
 
             Categoria cat = gasto.getCategoria();
-            System.out.print("Nueva categoria [" + (cat != null ? cat.getNombre() : "ninguna") + "] (deja en blanco para mantener): ");
+            System.out.print("Nueva categoria [" + (cat != null ? cat.getNombre() : "ninguna")
+                    + "] (deja en blanco para mantener): ");
             String catNombre = scanner.nextLine().trim();
             if (!catNombre.isEmpty()) {
                 cat = buscarOCrearCategoria(catNombre);
@@ -208,11 +235,15 @@ public class CLI {
     private void eliminarGasto() {
         listarGastos();
         List<Gasto> gastos = controlador.getGastosPersonales(controlador.getUsuarioActivo());
-        if (gastos.isEmpty()) return;
+        if (gastos.isEmpty())
+            return;
 
         System.out.print("Indice del gasto a eliminar: ");
         int idx = leerEnteroSeguro();
-        if (idx < 0 || idx >= gastos.size()) { System.out.println("Indice invalido."); return; }
+        if (idx < 0 || idx >= gastos.size()) {
+            System.out.println("Indice invalido.");
+            return;
+        }
 
         Gasto gasto = gastos.get(idx);
         System.out.print("Confirmar eliminacion de '" + gasto.getDescripcion() + "'? (s/n): ");
@@ -229,7 +260,10 @@ public class CLI {
 
     private void crearAlerta() {
         Usuario activo = controlador.getUsuarioActivo();
-        if (activo == null) { System.out.println("No hay usuario activo."); return; }
+        if (activo == null) {
+            System.out.println("No hay usuario activo.");
+            return;
+        }
 
         System.out.println("\n-- Crear alerta --");
         System.out.print("Tipo ([m]ensual / [s]emanal): ");
@@ -243,7 +277,10 @@ public class CLI {
         try {
             System.out.print("Limite (EUR): ");
             limite = Double.parseDouble(scanner.nextLine().trim());
-            if (limite <= 0) { System.out.println("El limite debe ser > 0."); return; }
+            if (limite <= 0) {
+                System.out.println("El limite debe ser > 0.");
+                return;
+            }
         } catch (NumberFormatException e) {
             System.out.println("Valor no valido.");
             return;
@@ -253,18 +290,26 @@ public class CLI {
         String catNombre = scanner.nextLine().trim();
         Categoria cat = catNombre.isEmpty() ? null : buscarOCrearCategoria(catNombre);
 
-        if (tipo.equals("m")) controlador.registrarAlertaMensual(limite, cat);
-        else controlador.registrarAlertaSemanal(limite, cat);
+        if (tipo.equals("m"))
+            controlador.registrarAlertaMensual(limite, cat);
+        else
+            controlador.registrarAlertaSemanal(limite, cat);
 
         System.out.println("[OK] Alerta creada.");
     }
 
     private void listarAlertas() {
         Usuario activo = controlador.getUsuarioActivo();
-        if (activo == null) { System.out.println("No hay usuario activo."); return; }
+        if (activo == null) {
+            System.out.println("No hay usuario activo.");
+            return;
+        }
 
         List<Alerta> alertas = RepositorioAlertas.getInstancia().getAlertasDelUsuario(activo);
-        if (alertas.isEmpty()) { System.out.println("No tienes alertas."); return; }
+        if (alertas.isEmpty()) {
+            System.out.println("No tienes alertas.");
+            return;
+        }
 
         System.out.println("\n-- Tus alertas --");
         for (int i = 0; i < alertas.size(); i++) {
@@ -279,10 +324,16 @@ public class CLI {
 
     private void listarNotificaciones() {
         Usuario activo = controlador.getUsuarioActivo();
-        if (activo == null) { System.out.println("No hay usuario activo."); return; }
+        if (activo == null) {
+            System.out.println("No hay usuario activo.");
+            return;
+        }
 
         List<Notificacion> notis = RepositorioAlertas.getInstancia().getNotificacionesDelUsuario(activo);
-        if (notis.isEmpty()) { System.out.println("Sin notificaciones."); return; }
+        if (notis.isEmpty()) {
+            System.out.println("Sin notificaciones.");
+            return;
+        }
 
         System.out.println("\n-- Notificaciones --");
         for (Notificacion n : notis) {
@@ -293,12 +344,18 @@ public class CLI {
     // --- Importar ---
 
     private void importarGastos() {
-        if (controlador.getUsuarioActivo() == null) { System.out.println("No hay usuario activo."); return; }
+        if (controlador.getUsuarioActivo() == null) {
+            System.out.println("No hay usuario activo.");
+            return;
+        }
 
         System.out.print("Ruta del fichero (CSV): ");
         String ruta = scanner.nextLine().trim();
         File f = new File(ruta);
-        if (!f.exists() || !f.isFile()) { System.out.println("[ERR] Fichero no encontrado."); return; }
+        if (!f.exists() || !f.isFile()) {
+            System.out.println("[ERR] Fichero no encontrado.");
+            return;
+        }
 
         try {
             int n = controlador.importarGastosDesdeFichero(f);
@@ -315,7 +372,8 @@ public class CLI {
             System.out.print("Monto (EUR): ");
             try {
                 double monto = Double.parseDouble(scanner.nextLine().trim());
-                if (monto > 0) return monto;
+                if (monto > 0)
+                    return monto;
                 System.out.println("El monto debe ser mayor que 0.");
             } catch (NumberFormatException e) {
                 System.out.println("Valor no valido. Introduce un numero.");
@@ -327,7 +385,8 @@ public class CLI {
         while (true) {
             System.out.print("Fecha (yyyy-MM-dd, ENTER para hoy): ");
             String entrada = scanner.nextLine().trim();
-            if (entrada.isEmpty()) return LocalDate.now();
+            if (entrada.isEmpty())
+                return LocalDate.now();
             try {
                 return LocalDate.parse(entrada);
             } catch (DateTimeParseException e) {
@@ -340,7 +399,8 @@ public class CLI {
         while (true) {
             System.out.print("Descripcion: ");
             String desc = scanner.nextLine().trim();
-            if (!desc.isEmpty()) return desc;
+            if (!desc.isEmpty())
+                return desc;
             System.out.println("La descripcion no puede estar vacia.");
         }
     }
@@ -355,8 +415,10 @@ public class CLI {
         String entrada = scanner.nextLine().trim();
         try {
             int idx = Integer.parseInt(entrada);
-            if (idx >= 0 && idx < categorias.size()) return categorias.get(idx);
-        } catch (NumberFormatException ignored) {}
+            if (idx >= 0 && idx < categorias.size())
+                return categorias.get(idx);
+        } catch (NumberFormatException ignored) {
+        }
         return buscarOCrearCategoria(entrada);
     }
 

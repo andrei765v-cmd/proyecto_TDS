@@ -21,6 +21,14 @@ public class CuentaPorcentual extends CuentaCompartida {
 		this.porcentajes = porcentajes;
 	}
 
+	public void setPorcentajes(Map<Usuario, Double> porcentajes) {
+		validarYAsignarPorcentajes(porcentajes);
+	}
+
+	public Map<Usuario, Double> getPorcentajes() {
+		return porcentajes;
+	}
+
 	@Override
 	public Map<Usuario, Double> calcularSaldos() {
 		double total = totalDeLaCuenta();

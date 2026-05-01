@@ -1,13 +1,14 @@
-/* Contenedor del Modal */
-.dialog-container {
+.dialog-container, .modal-container {
     -fx-background-color: #1a1a1a;
-    -fx-border-color: #333333;
+    -fx-border-color: #3a3a3a;
     -fx-border-width: 1;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
 }
 
-.dialog-title {
-    -fx-font-size: 20px;
-    -fx-font-weight: bold;
+.dialog-title, .modal-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: 900;
     -fx-text-fill: white;
 }
 

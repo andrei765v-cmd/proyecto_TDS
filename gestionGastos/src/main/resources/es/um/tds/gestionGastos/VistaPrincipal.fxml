@@ -32,7 +32,13 @@
                     </tabs>
                   </TabPane>
                   <Region HBox.hgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" styleClass="button-secondary" text="Importar CSV/Bancario" />
+                  <HBox alignment="CENTER" spacing="10.0">
+                     <children>
+                        <Label text="Sesión:" textFill="WHITE"/>
+                        <ComboBox fx:id="cbUsuarioActivo" promptText="Seleccionar usuario" styleClass="combo-box-modern" prefWidth="150" />
+                     </children>
+                  </HBox>
+                  <Button mnemonicParsing="false" styleClass="button-secondary" text="Importar CSV/Bancario" onAction="#onImportarCSV" />
                   <Button mnemonicParsing="false" styleClass="button-add" text="+ Nueva Alerta" onAction="#onNuevaAlerta"/>
                   <Button mnemonicParsing="false" styleClass="button-add" text="+ Nuevo Gasto" onAction="#onNuevoGasto"/>
                </children>
@@ -45,24 +51,19 @@
                <children>
                	  <Label text="Filtrar por:" textFill="#b2b2b2" />
                   
-                  <DatePicker promptText="Desde" styleClass="dark-datepicker" prefWidth="130"/>	<!-- Fecha inicio -->
-                  <DatePicker promptText="Hasta" styleClass="dark-datepicker" prefWidth="130"/>	<!-- Fecha fin -->
+                  <DatePicker fx:id="dpDesde" promptText="Desde" styleClass="dark-datepicker" prefWidth="130"/>	<!-- Fecha inicio -->
+                  <DatePicker fx:id="dpHasta" promptText="Hasta" styleClass="dark-datepicker" prefWidth="130"/>	<!-- Fecha fin -->
                   
-                  <MenuButton mnemonicParsing="false" styleClass="dark-combo" text="Meses">	<!-- Desplegable meses -->
+                  <MenuButton fx:id="btnMeses" mnemonicParsing="false" styleClass="dark-combo" text="Meses">	<!-- Desplegable meses -->
                     <items>
-                      <CheckMenuItem text="Enero" />
-                      <CheckMenuItem text="Febrero" />
-                      </items>
+                    </items>
                   </MenuButton>
-                  <MenuButton mnemonicParsing="false" styleClass="dark-combo" text="Categorías">	<!-- Desplegable categorias -->
+                  <MenuButton fx:id="btnCategorias" mnemonicParsing="false" styleClass="dark-combo" text="Categorías">	<!-- Desplegable categorias -->
                     <items>
-                      <CheckMenuItem text="Alimentación" />
-                      <CheckMenuItem text="Transporte" />
-                      <CheckMenuItem text="Ocio" />
                     </items>
                   </MenuButton>
                   
-                  <Button mnemonicParsing="false" styleClass="button-filter" text="Aplicar Filtros" />	<!-- Boton filtrar -->
+                  <Button mnemonicParsing="false" styleClass="button-filter" text="Aplicar Filtros" onAction="#onAplicarFiltros"/>	<!-- Boton filtrar -->
                   <Region HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
@@ -84,7 +85,7 @@
          </padding>
          <children>
             <Label text="Total Filtrado:" textFill="#b2b2b2" />
-            <Label styleClass="label-total" text="€ 1,240.50" />
+            <Label fx:id="lblTotalFiltrado" styleClass="label-total" text="€ 0.00" />
          </children>
       </HBox>
    </bottom>

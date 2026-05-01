@@ -5,7 +5,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -119,12 +118,7 @@ public class ControladorPrincipal {
         RepositorioAlertas.getInstancia().evaluarAlertas();
     }
 
-    /**
-     * Importa gastos desde un fichero externo usando el patrón Adaptador + Factory.
-     * @param fichero El fichero a importar.
-     * @return Número de gastos importados correctamente.
-     * @throws Exception Si el formato no está soportado o el fichero tiene errores.
-     */
+    //Importa gastos desde un fichero externo usando el patrón Adaptador + Factory.
     public int importarGastosDesdeFichero(File fichero) throws Exception {
         String nombre = fichero.getName();
         String extension = nombre.substring(nombre.lastIndexOf('.') + 1);
@@ -205,6 +199,14 @@ public class ControladorPrincipal {
     }
 
     public void eliminarCuenta(String nombre) {
+        CuentaCompartida cuenta = RepositorioCuentas.getInstancia().getCuenta(nombre);
+        if (cuenta != null) {
+            // Eliminar todos los gastos asociados a esta cuenta
+            List<Gasto> gastosAEliminar = new java.util.ArrayList<>(cuenta.getGastos());
+            for (Gasto g : gastosAEliminar) {
+                eliminarGasto(g, nombre);
+            }
+        }
         RepositorioCuentas.getInstancia().eliminarCuenta(nombre);
     }
 

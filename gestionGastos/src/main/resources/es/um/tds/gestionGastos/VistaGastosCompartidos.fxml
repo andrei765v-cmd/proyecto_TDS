@@ -15,8 +15,11 @@
     <HBox spacing="15" alignment="CENTER_LEFT">
         <Label text="Resumen de Saldos" styleClass="section-title"/>
         <ComboBox fx:id="comboCuentas" promptText="Seleccionar cuenta..." prefWidth="200" styleClass="combo-box-modern"/>
+        <Button fx:id="btnConfigurarCuenta" text="Configurar Cuenta" styleClass="button-action-ghost" onAction="#onConfigurarCuenta"/>
         <Region HBox.hgrow="ALWAYS" />
-        <Button text="Configurar Cuenta / Porcentajes" styleClass="button-action-ghost"/>
+        <Button text="+ Nueva Categoría" styleClass="button-add" onAction="#onNuevaCategoria"/>
+        <Button text="+ Nuevo Usuario" styleClass="button-add" onAction="#onNuevoUsuario"/>
+        <Button text="+ Nueva Cuenta" styleClass="button-add" onAction="#onNuevaCuenta"/>
     </HBox>
 
     <HBox spacing="20" fx:id="balancesContainer" minHeight="100">

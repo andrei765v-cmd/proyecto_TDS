@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="20.0" styleClass="modal-container" stylesheets="@base_style.css, @modal_formulario_style.css" 
+      xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="es.um.tds.gestionGastos.interfaz.ConfigurarCuentaController"
+      prefWidth="450">
+   <padding>
+      <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+   </padding>
+   <children>
+      <Label styleClass="modal-title" text="Configurar Cuenta" />
+      
+      <VBox spacing="10.0">
+         <children>
+            <Label text="Nombre de la Cuenta" styleClass="form-label" />
+            <TextField fx:id="txtNombre" styleClass="dark-input" />
+         </children>
+      </VBox>
+      
+      <VBox fx:id="vboxProporcional" spacing="10.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Label text="Ajustar Porcentajes (%)" styleClass="form-label" />
+            <ScrollPane fitToWidth="true" styleClass="transparent-scroll" prefHeight="200">
+               <content>
+                  <VBox fx:id="vboxParticipantes" spacing="10.0" />
+               </content>
+            </ScrollPane>
+            <Label fx:id="lblTotalPorcentaje" text="Total: 100%" styleClass="form-label" />
+         </children>
+      </VBox>
+      
+      <Separator style="-fx-opacity: 0.1;" />
+      
+      <HBox spacing="15.0" alignment="CENTER_LEFT">
+         <children>
+            <Button mnemonicParsing="false" onAction="#onEliminar" styleClass="button-secondary" text="Eliminar Cuenta" style="-fx-text-fill: #ff4d4d; -fx-border-color: #ff4d4d;" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button mnemonicParsing="false" onAction="#onCancelar" styleClass="button-secondary" text="Cancelar" />
+            <Button mnemonicParsing="false" onAction="#onGuardar" styleClass="button-primary" text="Guardar Cambios" />
+         </children>
+      </HBox>
+   </children>
+</VBox>

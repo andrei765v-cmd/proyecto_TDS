@@ -9,7 +9,6 @@ import java.util.Map;
 import es.um.tds.gestionGastos.modelo.Categoria;
 import es.um.tds.gestionGastos.modelo.Gasto;
 import es.um.tds.gestionGastos.modelo.Usuario;
-import javafx.scene.Node;
 
 public abstract class CuentaCompartida {
 	private String nombre;

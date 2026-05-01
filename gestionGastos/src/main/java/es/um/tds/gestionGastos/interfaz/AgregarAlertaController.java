@@ -62,6 +62,7 @@ public class AgregarAlertaController {
             }
 
             System.out.println("Alerta " + tipoAlerta + " creada con éxito para " + categoria.getNombre());
+            mostrarAlertaCreada();
             cerrarVentana();
 
         } catch (NumberFormatException e) {
@@ -84,6 +85,15 @@ public class AgregarAlertaController {
         alert.setTitle(titulo);
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
+
+    // Mostrar mensaje popup de que se ha creado la alerta
+    private void mostrarAlertaCreada() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Alerta Creada");
+        alert.setHeaderText(null);
+        alert.setContentText("Se ha configurado la alerta correctamente.");
         alert.showAndWait();
     }
 }

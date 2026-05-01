@@ -6,66 +6,38 @@
 <?import javafx.scene.shape.Circle?>
 
 <VBox spacing="20.0" styleClass="alerts-container" stylesheets="@base_style.css, @alerta_style.css"
-		xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+		xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="es.um.tds.gestionGastos.interfaz.AlertasController">
+
    <padding>
       <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
    </padding>
    <children>
       <HBox alignment="CENTER_LEFT" spacing="10.0">
          <children>
-            <Label styleClass="section-title" text="Alertas y Notificaciones" />
-            <Label styleClass="badge-count" text="3 Pendientes" />			<!-- Alertas pendientes (alertasPendientes) -->
+            <Label styleClass="section-title" text="Mis Alertas Configuradas" />
+         </children>
+      </HBox>
+      <ScrollPane fitToWidth="true" styleClass="transparent-scroll" prefHeight="150.0">
+         <content>
+            <VBox fx:id="vboxAlertasConfiguradas" spacing="10.0">
+               <!-- Alertas configuradas inyectadas dinámicamente -->
+            </VBox>
+         </content>
+      </ScrollPane>
+
+      <HBox alignment="CENTER_LEFT" spacing="10.0">
+         <children>
+            <Label styleClass="section-title" text="Notificaciones" />
+            <Label fx:id="lblConteoAlertas" styleClass="badge-count" text="0 Pendientes" />
          </children>
       </HBox>
 
       <ScrollPane fitToWidth="true" styleClass="transparent-scroll" VBox.vgrow="ALWAYS">
          <content>
-            <VBox spacing="15.0">
+            <VBox fx:id="vboxAlertas" spacing="15.0">
                <children>
-                  
-                  <!-- Alertas de ejemplo -->
-                  <!-- Alerta de presupuesto excedido -->
-                  <HBox spacing="15.0" styleClass="alert-card, alert-critical">
-                     <children>
-                        <Circle radius="6.0" fill="#ff4d4d" />
-                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
-                           <children>
-                              <Label styleClass="alert-header" text="Presupuesto Excedido: Comida" />
-                              <Label styleClass="alert-body" text="Has superado el límite de 200€ mensual en la categoría Restaurantes." wrapText="true" />
-                           </children>
-                        </VBox>
-                        <Button mnemonicParsing="false" styleClass="button-action" text="Ajustar" />
-                     </children>
-                  </HBox>
-                  
-				  <!-- Alerta informativa -->
-                  <HBox spacing="15.0" styleClass="alert-card, alert-info">
-                     <children>
-                        <Circle radius="6.0" fill="#00a8ff" />
-                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
-                           <children>
-                              <Label styleClass="alert-header" text="Nuevo Gasto de 'Juan'" />
-                              <Label styleClass="alert-body" text="Se ha añadido un gasto de 45.00€ en 'Internet/Fibra'. Tu parte: 22.50€." wrapText="true" />
-                           </children>
-                        </VBox>
-                        <Button mnemonicParsing="false" styleClass="button-action-ghost" text="Ver detalle" />
-                     </children>
-                  </HBox>
-				  
-				  <!-- Alerta de advertencia -->
-                  <HBox spacing="15.0" styleClass="alert-card, alert-warning">
-                     <children>
-                        <Circle radius="6.0" fill="#ffcc00" />
-                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
-                           <children>
-                              <Label styleClass="alert-header" text="Recordatorio: Pago de Alquiler" />
-                              <Label styleClass="alert-body" text="Mañana vence el plazo para registrar el pago del alquiler compartido." wrapText="true" />
-                           </children>
-                        </VBox>
-                        <Button mnemonicParsing="false" styleClass="button-action" text="Pagar ahora" />
-                     </children>
-                  </HBox>
-
+                  <!-- Las alertas se inyectarán aquí dinámicamente -->
                </children>
             </VBox>
          </content>

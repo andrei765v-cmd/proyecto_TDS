@@ -14,7 +14,7 @@
     -fx-padding: 15;
     -fx-background-radius: 10;
     -fx-border-radius: 10;
-    -fx-border-width: 0 0 0 4; /* Borde lateral de color */
+    -fx-border-width: 0; /* Sin borde lateral */
     -fx-alignment: center-left;
 }
 

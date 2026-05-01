@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="25.0" styleClass="dialog-container" stylesheets="@base_style.css, @modal_formulario_style.css"
+		xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+		fx:controller="es.um.tds.gestionGastos.interfaz.AgregarCategoriaController">
+   <padding>
+      <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+   </padding>
+   <children>
+      <Label styleClass="dialog-title" text="Nueva Categoría" />
+      
+      <VBox spacing="5.0">
+         <children>
+            <Label text="Nombre de la Categoría" textFill="#b2b2b2" />
+            <TextField fx:id="txtNombre" promptText="Ej. Supermercado, Facturas..." styleClass="modern-textfield" />
+         </children>
+      </VBox>
+      
+      <HBox alignment="CENTER_RIGHT" spacing="15.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#cancelar" styleClass="button-secondary" text="Cancelar" />
+            <Button mnemonicParsing="false" onAction="#guardar" styleClass="button-primary" text="Guardar" />
+         </children>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </HBox>
+   </children>
+</VBox>

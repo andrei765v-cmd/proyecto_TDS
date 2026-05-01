@@ -8,31 +8,32 @@
 
 <ScrollPane fitToWidth="true" styleClass="transparent-scroll" stylesheets="@base_style.css, @dashboard_style.css" 
 			xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="es.um.tds.gestionGastos.interfaz.ControladorDashboard">
+         fx:controller="es.um.tds.gestionGastos.interfaz.ControladorDashboard">
    <content>
       <VBox spacing="25.0">
          <padding>
             <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
          </padding>
          <children>
+
             <HBox spacing="20.0">
                <children>
                   <VBox styleClass="summary-card" HBox.hgrow="ALWAYS">
                      <children>
                         <Label styleClass="summary-label" text="Gasto Total Mes" />
-                        <Label styleClass="summary-value" text="1.450,20 €" />	<!-- Gasto total en el mes -->
+                        <Label fx:id="lblTotalMes" styleClass="summary-value" text="0.00 €" />	<!-- Gasto total en el mes -->
                      </children>
                   </VBox>
                   <VBox styleClass="summary-card" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label styleClass="summary-label" text="Promedio Diario" />
-                        <Label styleClass="summary-value" text="48,34 €" />	<!-- Gasto promedio diario -->
+                        <Label styleClass="summary-label" text="Promedio Diario (Mes)" />
+                        <Label fx:id="lblPromedioDiario" styleClass="summary-value" text="0.00 €" />	<!-- Gasto promedio diario -->
                      </children>
                   </VBox>
                   <VBox styleClass="summary-card" HBox.hgrow="ALWAYS">
                      <children>
                         <Label styleClass="summary-label" text="Categoría Top" />
-                        <Label styleClass="summary-value, text-positive" text="Alimentación" />	<!-- Categoría con mas gasto -->
+                        <Label fx:id="lblCategoriaTop" styleClass="summary-value, text-positive" text="N/A" />	<!-- Categoría con mas gasto -->
                      </children>
                   </VBox>
                </children>
@@ -58,7 +59,7 @@
 
                   <VBox styleClass="card-container" GridPane.columnIndex="1">
                      <children>
-                        <Label styleClass="card-title" text="Gastos Semanales">
+                        <Label styleClass="card-title" text="Gastos Recientes">
                            <padding><Insets bottom="10" left="15" top="15"/></padding>
                         </Label>
                         <BarChart fx:id="barChartGastos" VBox.vgrow="ALWAYS">	<!-- Bar chart semanal -->

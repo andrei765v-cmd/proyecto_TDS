@@ -1,5 +1,6 @@
 package es.um.tds.gestionGastos;
 
+import es.um.tds.gestionGastos.Controladores.ControladorPrincipal;
 import es.um.tds.gestionGastos.cli.CLI;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +23,7 @@ public class App extends Application {
 			// 3. Configuramos el escenario
 			primaryStage.setTitle("Aplicacion TDS");
 			primaryStage.setScene(scene);
+			primaryStage.setOnCloseRequest(e -> ControladorPrincipal.getInstancia().guardarTodo());
 			primaryStage.show();
 
 		} catch (Exception e) {

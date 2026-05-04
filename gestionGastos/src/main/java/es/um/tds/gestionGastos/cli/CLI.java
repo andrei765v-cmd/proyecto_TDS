@@ -69,7 +69,8 @@ public class CLI {
                     importarGastos();
                     break;
                 case "0":
-                    System.out.println("Saliendo del modo CLI. Hasta pronto!");
+                    controlador.guardarTodo();
+                    System.out.println("Datos guardados. Saliendo del modo CLI. Hasta pronto!");
                     salir = true;
                     break;
                 default:

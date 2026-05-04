@@ -20,6 +20,11 @@ import es.um.tds.gestionGastos.modelo.RepositorioCategorias;
 import es.um.tds.gestionGastos.modelo.RepositorioCuentas;
 import es.um.tds.gestionGastos.modelo.RepositorioGastos;
 import es.um.tds.gestionGastos.modelo.RepositorioUsuarios;
+import es.um.tds.gestionGastos.modelo.persistencia.IRepositorioAlertas;
+import es.um.tds.gestionGastos.modelo.persistencia.IRepositorioCategorias;
+import es.um.tds.gestionGastos.modelo.persistencia.IRepositorioCuentas;
+import es.um.tds.gestionGastos.modelo.persistencia.IRepositorioGastos;
+import es.um.tds.gestionGastos.modelo.persistencia.IRepositorioUsuarios;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -29,19 +34,42 @@ import javafx.collections.ObservableList;
 public class ControladorPrincipal {
 
     private static ControladorPrincipal instancia;
-    
+
+    // Repositorios via interfaz (patrón Repositorio + Protected Variations)
+    private final IRepositorioUsuarios repoUsuarios = RepositorioUsuarios.getInstancia();
+    private final IRepositorioCategorias repoCategorias = RepositorioCategorias.getInstancia();
+    private final IRepositorioGastos repoGastos = RepositorioGastos.getInstancia();
+    private final IRepositorioCuentas repoCuentas = RepositorioCuentas.getInstancia();
+    private final IRepositorioAlertas repoAlertas = RepositorioAlertas.getInstancia();
+
     // Lista observable para la interfaz (JavaFX)
     private ObservableList<Gasto> todosLosGastos = FXCollections.observableArrayList();
-    
+
     // Usuario activo de la sesión
     private ObjectProperty<Usuario> usuarioActivo = new SimpleObjectProperty<>();
-    
+
     // Filtro global actual
     private Predicate<Gasto> filtroActual = g -> true;
-    
+
     private ControladorPrincipal() {
-        // Cargar gastos existentes si hubiera persistencia
-        todosLosGastos.addAll(RepositorioGastos.getInstancia().getGastos());
+        cargarTodo();
+        todosLosGastos.addAll(repoGastos.getGastos());
+    }
+
+    public void cargarTodo() {
+        repoUsuarios.cargar();
+        repoCategorias.cargar();
+        repoGastos.cargar();
+        repoCuentas.cargar();
+        repoAlertas.cargar();
+    }
+
+    public void guardarTodo() {
+        repoUsuarios.guardar();
+        repoCategorias.guardar();
+        repoGastos.guardar();
+        repoCuentas.guardar();
+        repoAlertas.guardar();
     }
 
     public static synchronized ControladorPrincipal getInstancia() {

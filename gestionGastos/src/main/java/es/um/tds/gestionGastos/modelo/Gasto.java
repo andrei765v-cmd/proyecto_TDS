@@ -2,6 +2,9 @@ package es.um.tds.gestionGastos.modelo;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Gasto {
     private double cantidad;
     private LocalDate fecha;
@@ -9,7 +12,15 @@ public class Gasto {
     private Categoria categoria;
     private Usuario usuario;
 
-    public Gasto(double cantidad, LocalDate fecha, String descripcion, Categoria categoria, Usuario usuario) {
+    public Gasto() {}
+
+    @JsonCreator
+    public Gasto(
+            @JsonProperty("cantidad") double cantidad,
+            @JsonProperty("fecha") LocalDate fecha,
+            @JsonProperty("descripcion") String descripcion,
+            @JsonProperty("categoria") Categoria categoria,
+            @JsonProperty("usuario") Usuario usuario) {
         this.cantidad = cantidad;
         this.fecha = fecha;
         this.descripcion = descripcion;
@@ -50,14 +61,14 @@ public class Gasto {
     }
 
     public Usuario getUsuario() {
-		return usuario;
-	}
+        return usuario;
+    }
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
-	public void editar(double nuevaCantidad, LocalDate nuevaFecha, String nuevaDescripcion, Categoria nuevaCategoria) {
+    public void editar(double nuevaCantidad, LocalDate nuevaFecha, String nuevaDescripcion, Categoria nuevaCategoria) {
         this.cantidad = nuevaCantidad;
         this.fecha = nuevaFecha;
         this.descripcion = nuevaDescripcion;

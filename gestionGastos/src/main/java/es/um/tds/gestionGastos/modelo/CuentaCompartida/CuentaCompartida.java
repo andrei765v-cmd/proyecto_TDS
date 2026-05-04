@@ -6,62 +6,86 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import es.um.tds.gestionGastos.modelo.Categoria;
 import es.um.tds.gestionGastos.modelo.Gasto;
 import es.um.tds.gestionGastos.modelo.Usuario;
 
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "tipo")
+@JsonSubTypes({
+    @JsonSubTypes.Type(value = CuentaEquitativa.class, name = "equitativa"),
+    @JsonSubTypes.Type(value = CuentaPorcentual.class, name = "porcentual")
+})
 public abstract class CuentaCompartida {
-	private String nombre;
-	protected List<Usuario> participantes;
-	protected List<Gasto> gastos;
-	
-	public CuentaCompartida(String nombre, List<Usuario> participantes) {
-		this.nombre = nombre;
-		this.participantes = participantes;
-		this.gastos = new ArrayList<>();
-	}
+    private String nombre;
+    protected List<Usuario> participantes;
+    protected List<Gasto> gastos;
 
-	public String getNombre() {
-		return nombre;
-	}
+    public CuentaCompartida() {
+        this.participantes = new ArrayList<>();
+        this.gastos = new ArrayList<>();
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    public CuentaCompartida(String nombre, List<Usuario> participantes) {
+        this.nombre = nombre;
+        this.participantes = participantes;
+        this.gastos = new ArrayList<>();
+    }
 
-	public List<Gasto> getGastos() {
-	    return Collections.unmodifiableList(gastos);
-	}
-	
-	public List<Usuario> getUsuarios() {
-		return Collections.unmodifiableList(participantes);
-	}
-	
-	public Gasto registrarGasto(double cantidad, LocalDate fecha, String descripcion, Categoria categoria, Usuario pagador) {
-	    Gasto gasto = new Gasto(cantidad, fecha, descripcion, categoria, pagador);
-	    this.gastos.add(gasto);
-	    return gasto;
-	}
+    public String getNombre() {
+        return nombre;
+    }
 
-	public void addGasto(Gasto gasto) {
-		if (!this.gastos.contains(gasto)) {
-			this.gastos.add(gasto);
-		}
-	}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	public void eliminarGasto(Gasto gasto) {
-		this.gastos.remove(gasto);
-	}
+    public List<Gasto> getGastos() {
+        return Collections.unmodifiableList(gastos);
+    }
 
-	public abstract Map<Usuario, Double> calcularSaldos();
+    public void setGastos(List<Gasto> gastos) {
+        this.gastos = gastos != null ? gastos : new ArrayList<>();
+    }
 
-	public double totalPagadoPor(Usuario u) {	// Método auxiliar para sumar cuánto ha pagado un usuario
-		return gastos.stream().filter(g -> g.getUsuario().equals(u))
-				.mapToDouble(Gasto::getCantidad).sum();
-	}
+    public List<Usuario> getUsuarios() {
+        return Collections.unmodifiableList(participantes);
+    }
 
-	protected double totalDeLaCuenta() {
-		return gastos.stream().mapToDouble(Gasto::getCantidad).sum();
-	}
+    public List<Usuario> getParticipantes() {
+        return participantes;
+    }
 
+    public void setParticipantes(List<Usuario> participantes) {
+        this.participantes = participantes != null ? participantes : new ArrayList<>();
+    }
+
+    public Gasto registrarGasto(double cantidad, LocalDate fecha, String descripcion, Categoria categoria, Usuario pagador) {
+        Gasto gasto = new Gasto(cantidad, fecha, descripcion, categoria, pagador);
+        this.gastos.add(gasto);
+        return gasto;
+    }
+
+    public void addGasto(Gasto gasto) {
+        if (!this.gastos.contains(gasto)) {
+            this.gastos.add(gasto);
+        }
+    }
+
+    public void eliminarGasto(Gasto gasto) {
+        this.gastos.remove(gasto);
+    }
+
+    public abstract Map<Usuario, Double> calcularSaldos();
+
+    public double totalPagadoPor(Usuario u) {
+        return gastos.stream().filter(g -> g.getUsuario().equals(u))
+                .mapToDouble(Gasto::getCantidad).sum();
+    }
+
+    protected double totalDeLaCuenta() {
+        return gastos.stream().mapToDouble(Gasto::getCantidad).sum();
+    }
 }

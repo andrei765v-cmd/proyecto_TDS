@@ -4,11 +4,11 @@ Una aplicación diseñada para el control de gastos, cuenta con soporte para imp
 
 ## Participantes
 
-| Nombre | Correo |
+| Nombre | Correo | Subgrupo |
 | --- | --- |
-| Pedro Romero Ruiz | p.romeroruiz@um.es |
-| Alejandro Andrei Vasilache | aa.vasilache@um.es |
-| Pablo Ubeda Garcia | pablo.ubedag@um.es |
+| Pedro Romero Ruiz | p.romeroruiz@um.es | 3.4 |
+| Alejandro Andrei Vasilache | aa.vasilache@um.es | 3.4 |
+| Pablo Ubeda Garcia | pablo.ubedag@um.es | 3.4 |
 
 ## Descripción
 

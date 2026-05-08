@@ -2,6 +2,14 @@
 
 Una aplicación diseñada para el control de gastos, cuenta con soporte para importación de datos CSV, una **interfaz gráfica** con JavaFX y una **interfaz de consola** (CLI).
 
+## Participantes
+
+| Nombre | Correo |
+| --- | --- |
+| Pedro Romero Ruiz | p.romeroruiz@um.es |
+| Alejandro Andrei Vasilache | aa.vasilache@um.es |
+| Pablo Ubeda Garcia | pablo.ubedag@um.es |
+
 ## Descripción
 
 Este proyecto permite a los usuarios gestionar sus finanzas personales, permitiendo además la gestión de **cuentas compartidas**, configuración de **alertas de gasto** y visualización de datos mediante gráficas.

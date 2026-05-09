@@ -39,6 +39,13 @@ public class RepositorioCategorias implements IRepositorioCategorias {
     public void cargar() {
         List<Categoria> cargadas = JsonStore.leer(FICHERO, new TypeReference<List<Categoria>>() {}, List.of());
         categorias.setAll(cargadas);
+        if (categorias.isEmpty()) {
+            crear("Alimentación");
+            crear("Transporte");
+            crear("Ocio");
+            crear("Hogar");
+            crear("Otros");
+        }
     }
 
     @Override

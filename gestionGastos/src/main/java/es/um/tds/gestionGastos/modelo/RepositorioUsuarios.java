@@ -47,6 +47,9 @@ public class RepositorioUsuarios implements IRepositorioUsuarios {
     public void cargar() {
         List<Usuario> cargados = JsonStore.leer(FICHERO, new TypeReference<List<Usuario>>() {}, List.of());
         usuarios.setAll(cargados);
+        if (usuarios.isEmpty()) {
+            registrar("Yo");
+        }
     }
 
     @Override

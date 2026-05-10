@@ -38,9 +38,12 @@ java -jar app-gestion-de-gastos.jar --cli
 
 Puedes encontrar detalles más específicos en los siguientes documentos:
 
-- **[Arquitectura y Diseño](gestionGastos/docs/arquitectura.md)**: Patrones GRASP, Singleton, Factory, Adapter y estructura del proyecto.
+- **[Arquitectura y Diseño](gestionGastos/docs/arquitectura.md)**: Patrones GRASP, patrones de diseño (Singleton, Repositorio, Factory, Adapter, Strategy, Observer), persistencia y decisiones de diseño.
+- **[Historias de Usuario](gestionGastos/docs/historias_usuario.md)**: Especificación de las 26 historias de usuario con criterios de aceptación.
+- **[Diagrama de Interacción](gestionGastos/docs/diagrama_interaccion.md)**: Diagrama de secuencia de la HU-05 (*Crear Nueva Categoría*).
 - **[Funcionalidades Detalladas](gestionGastos/docs/funcionalidades.md)**: Explicación de gastos, cuentas compartidas, alertas e importación.
-- **[Guía de Usuario](gestionGastos/docs/guia_usuario.md)**: Instrucciones paso a paso para configurar y usar la aplicación.
+- **[Guía de Usuario](gestionGastos/docs/guia_usuario.md)**: Manual con capturas de la interfaz, modo CLI, importación de datos y persistencia.
+- **Diagrama de Clases**: Disponible en [`gestionGastos/docs/UML.png`](gestionGastos/docs/UML.png) (fuente editable: [`UML.drawio`](gestionGastos/docs/UML.drawio)).
 
 ---
 Proyecto de **Tecnologías de Diseño de Software (TDS)**.

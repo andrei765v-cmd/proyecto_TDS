@@ -27,16 +27,16 @@ El sistema de gestión de gastos ofrece un conjunto completo de herramientas par
     - Notificación de "estabilización" si un gasto se edita/elimina y el usuario vuelve a estar bajo el límite.
 
 ## 5. Importación de Datos
-- Soporte para importación masiva desde ficheros **CSV** (formato estilo extracto bancario) y **JSON**.
-- La extensión del fichero determina el adaptador automáticamente (patrón Adapter + Factory).
-- Las categorías y los usuarios pagadores no existentes se crean al vuelo durante la importación.
+- Importación masiva desde ficheros **CSV** (formato estilo extracto bancario) y **JSON**.
+- La extensión del fichero decide qué adaptador se usa.
+- Si en el fichero aparecen categorías o usuarios que no existen, se crean automáticamente.
 
 ## 6. Persistencia Automática
-- Los datos se cargan al arrancar la aplicación y se guardan al cerrar la ventana JavaFX o al salir del modo CLI.
-- El almacenamiento se realiza en formato JSON, en la subcarpeta `datos/` junto al programa.
-- Para reiniciar el estado, basta con borrar dicha carpeta.
+- Los datos se cargan al arrancar y se guardan al cerrar la aplicación (al cerrar la ventana en GUI o al salir del CLI).
+- Se guardan en formato JSON en la subcarpeta `datos/`, junto al programa.
+- Para empezar de cero, basta con borrar esa carpeta.
 
 ## 7. Modo CLI
-- Alternativa por terminal a la interfaz gráfica, con menú interactivo.
-- Operaciones disponibles: registrar/modificar/eliminar/listar gastos, cambiar usuario, crear y listar alertas, ver notificaciones e importar gastos desde fichero.
+- Modo por terminal con un menú interactivo.
+- Permite registrar, modificar, eliminar y listar gastos, cambiar de usuario, crear y listar alertas, ver notificaciones e importar gastos desde fichero.
 

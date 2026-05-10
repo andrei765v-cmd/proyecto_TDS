@@ -1,33 +1,35 @@
-# Guía de Ejecución y Uso
+# Manual de Usuario
 
-La aplicación puede ejecutarse en dos modos: Interfaz Gráfica (GUI) y Línea de Comandos (CLI).
+Esta guía explica cómo usar la aplicación **Gestión de Gastos** en sus dos modos (interfaz gráfica y línea de comandos), y qué formato deben tener los ficheros para importar datos.
 
-## Requisitos
-- Java JDK 21 o superior.
-- JavaFX (incluido en el proyecto mediante dependencias Maven/Gradle).
+## 1. Requisitos
+- **Java JDK 21** o superior.
+- **JavaFX**, ya incluido como dependencia en el `pom.xml`.
 
-## Modos de Ejecución
+## 2. Cómo arrancar la aplicación
 
-### 1. Interfaz Gráfica (GUI) - Por defecto
-Para lanzar la aplicación con la interfaz moderna de escritorio:
+### 2.1. Modo gráfico (GUI)
+Es el modo por defecto:
+
 ```bash
-java -jar app-gestion-de-gastos.jar
+java -jar gestionGastos.jar
 ```
-*(O ejecutando la clase `App.java` o `Launcher.java` sin argumentos desde tu IDE)*.
 
-Tambien puedes ejecutarlo haciendo **doble clic** en el .jar desde el explorador de archivos.
+También puedes ejecutar la clase `App` o `Launcher` desde el IDE, o hacer doble clic en el `.jar`.
 
-### 2. Línea de Comandos (CLI)
-Para lanzar la aplicación en modo terminal:
+### 2.2. Modo línea de comandos (CLI)
+Se activa pasando el argumento `--cli`:
+
 ```bash
-java -jar nombre_del_archivo.jar --cli
+java -jar gestionGastos.jar --cli
 ```
-*(O pasando el argumento `--cli` al ejecutar la clase `App.java` o `Launcher.java` en tu IDE)*.
 
-Opciones del menú CLI:
+Desde el IDE: añade `--cli` como argumento de programa, o lanza directamente la clase `cli.CLI`.
+
+El menú del CLI tiene estas opciones:
 
 | Opción | Acción |
-| --- | --- |
+| :---: | --- |
 | 1 | Registrar gasto |
 | 2 | Modificar gasto |
 | 3 | Eliminar gasto |
@@ -39,40 +41,82 @@ Opciones del menú CLI:
 | 9 | Importar gastos desde fichero (CSV o JSON) |
 | 0 | Salir (guarda los datos antes de cerrar) |
 
-## Uso Básico
+## 3. Uso de la interfaz gráfica
 
-### Primeros Pasos
-1. **Seleccionar Usuario**: Al iniciar, selecciona un usuario del combo superior para cargar sus datos y notificaciones.
-2. **Dashboard**: Revisa tu estado financiero actual en la primera pestaña.
-3. **Añadir Gastos**: Usa el botón "+ Nuevo Gasto" en la cabecera. Puedes marcarlo como personal o asignarlo a una cuenta compartida.
+### 3.1. Ventana principal y selección de usuario
+Al arrancar verás cuatro pestañas (*Mis Gastos*, *Dashboard*, *Cuentas Compartidas* e *Historial Alertas*) y una cabecera con el selector de usuario activo y los botones para acciones rápidas.
 
-### Gestión de Alertas
-- Ve a la pestaña **Alertas**.
-- Configura una nueva alerta definiendo un límite y una categoría.
-- El sistema te notificará automáticamente en la zona inferior si te excedes.
+![Selector de usuario activo](assets/cambio_user.png)
 
-### Cuentas Compartidas
-- En la pestaña **Cuentas Compartidas**, selecciona una cuenta del desplegable.
-- Verás el resumen de saldos: quién debe dinero (rojo) y quién debe recibirlo (verde).
-- Usa **Configurar Cuenta** para editar la estructura de la cuenta o eliminarla si ya no es necesaria.
+El usuario activo es a quien se le asignan los gastos nuevos y de quien se ven las notificaciones. Para crear más usuarios, ve a la pestaña *Cuentas Compartidas* y pulsa **"+ Nuevo Usuario"**.
 
-### Importar Gastos desde Fichero
-La aplicación admite importación masiva en dos formatos. La extensión del fichero determina el adaptador (patrón Adaptador + Factory).
+### 3.2. Mis Gastos
+La pestaña *Mis Gastos* muestra una tabla con los gastos del usuario activo (fecha, descripción, categoría e importe). Encima de la tabla está la barra de filtros, que permite filtrar por intervalo de fechas, por meses concretos o por categorías.
 
-- **GUI**: botón **"Importar CSV/Bancario"** en la cabecera.
-- **CLI**: opción **[9] Importar gastos desde fichero**, introduce la ruta absoluta.
+![Tabla de gastos personales](assets/mis_gastos.png)
 
-#### Formato CSV
-Cabecera estilo extracto bancario:
+Si editas o borras un gasto desde aquí, los cambios se ven al momento en el *Dashboard* y en el cálculo de las alertas.
+
+### 3.3. Dashboard
+La pestaña *Dashboard* es un resumen visual:
+
+- Tarjetas con el gasto total del mes, el promedio diario y la categoría con más gasto.
+- Gráfico circular con el reparto del gasto por categorías.
+- Gráfico de barras con los gastos más recientes.
+
+![Dashboard de visualización](assets/dashboard.png)
+
+Los filtros que apliques en *Mis Gastos* también afectan a las gráficas.
+
+### 3.4. Cuentas compartidas
+En la pestaña *Cuentas Compartidas* puedes ver los gastos compartidos con otras personas. Una vez que eliges una cuenta del desplegable puedes:
+
+- Ver el saldo de cada participante (en verde si le deben y en rojo si debe).
+- Ver la tabla de gastos de la cuenta.
+- Crear usuarios, categorías o cuentas nuevas desde los botones de la cabecera.
+- Renombrar la cuenta, cambiar los porcentajes o eliminarla con el botón **"Configurar Cuenta"**.
+
+![Vista de cuenta compartida](assets/cuentas_compartidas.png)
+
+Hay dos tipos de cuenta: equitativa (todos pagan lo mismo) y porcentual (cada uno paga un porcentaje, y la suma tiene que dar 100%).
+
+### 3.5. Alertas y notificaciones
+La pestaña *Historial Alertas* tiene dos partes: las alertas que has configurado y el historial de notificaciones que ha generado el sistema cuando se ha pasado algún límite.
+
+![Alertas y notificaciones](assets/historial_alertas.png)
+
+Para crear una alerta nueva pulsa **"+ Nueva Alerta"** en la cabecera. Puedes elegir entre semanal o mensual, y opcionalmente puedes asociarla a una categoría concreta (por ejemplo, *100€ al mes en Ocio*).
+
+### 3.6. Diálogos para crear cosas
+Las altas de gastos y alertas se hacen en ventanas modales:
+
+![Diálogos de nuevo gasto y nueva alerta](assets/nuevos_GA.png)
+
+Los formularios validan los datos antes de guardar. Si falta algún campo o los porcentajes de una cuenta no suman 100%, te avisa con un mensaje de error.
+
+## 4. Importar gastos desde un fichero
+
+La aplicación puede leer un fichero externo y crear los gastos automáticamente. La extensión del fichero decide qué adaptador se usa.
+
+![Importación de gastos](assets/importar.png)
+
+- En la **GUI**: botón **"Importar CSV/Bancario"** de la cabecera.
+- En el **CLI**: opción **[9]**, escribiendo la ruta del fichero.
+
+### 4.1. Formato CSV
+Sirve para extractos bancarios con esta cabecera:
+
 ```
 Date,Account,Category,Subcategory,Note,Payer,Amount,Currency
 3/2/2022 10:11,Personal,con tarjeta,Comida,Desayuno,Me,4.50,EUR
 ```
-- Fecha en `M/d/yyyy H:mm`.
-- `Payer="Me"` asigna el gasto al usuario activo; cualquier otro nombre crea/usa ese usuario.
 
-#### Formato JSON
-Array de objetos:
+- La fecha va en formato `M/d/yyyy H:mm`.
+- Si en `Payer` pone `"Me"`, el gasto se asigna al usuario activo. Si pone otro nombre, se asigna a ese usuario (y se crea si no existe).
+
+### 4.2. Formato JSON
+Se espera un array con los campos básicos del gasto:
+
 ```json
 [
   {"fecha":"2026-04-01","descripcion":"Desayuno","monto":4.50,"categoria":"Comida","payer":"Me"},
@@ -80,14 +124,21 @@ Array de objetos:
   {"fecha":"2026-04-03","descripcion":"Cine","monto":9.90,"categoria":"Ocio","payer":"Anthony"}
 ]
 ```
-- `fecha` en `yyyy-MM-dd`.
-- `payer` es opcional (si falta o es `"Me"`, se asigna al usuario activo).
-- Las categorías inexistentes se crean automáticamente.
-- Los usuarios inexistentes se crean automáticamente
-### Persistencia de Datos
-Los datos (usuarios, categorías, gastos, cuentas, alertas y notificaciones) se guardan automáticamente en la subcarpeta `datos/` ubicada junto al programa (relativa al directorio desde el que se lanza la aplicación), en formato JSON. La carga es automática al arrancar y el guardado se realiza al cerrar la ventana o al salir del CLI con la opción `0`.
 
-Para empezar desde cero, borra la carpeta `datos/`:
+- `fecha` en formato `yyyy-MM-dd`.
+- `payer` es opcional. Si falta o pone `"Me"`, el gasto se asigna al usuario activo.
+- Si la categoría no existe, se crea sola.
+- Si el usuario que aparece en `payer` no existe, también se crea solo.
+
+## 5. Dónde se guardan los datos
+
+Toda la información (usuarios, categorías, gastos, cuentas compartidas, alertas y notificaciones) se guarda en formato JSON en la subcarpeta `datos/`, que está junto al ejecutable.
+
+- Los datos se cargan al arrancar la aplicación.
+- Se guardan al cerrar la ventana en GUI o al salir del CLI con la opción `0`.
+
+Si quieres empezar de cero, borra la carpeta `datos/`:
+
 ```powershell
 Remove-Item .\datos -Recurse -Force
 ```

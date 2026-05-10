@@ -14,7 +14,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 public class JsonStore {
 
-    private static final Path DATA_DIR = Paths.get(System.getProperty("user.home"), ".gestionGastos");
+    private static final Path DATA_DIR = Paths.get(System.getProperty("user.dir"), "datos");
     private static final ObjectMapper MAPPER = new ObjectMapper()
             .registerModule(new JavaTimeModule())
             .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)

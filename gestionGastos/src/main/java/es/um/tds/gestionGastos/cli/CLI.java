@@ -350,7 +350,7 @@ public class CLI {
             return;
         }
 
-        System.out.print("Ruta del fichero (CSV): ");
+        System.out.print("Ruta del fichero (CSV o JSON): ");
         String ruta = scanner.nextLine().trim();
         File f = new File(ruta);
         if (!f.exists() || !f.isFile()) {

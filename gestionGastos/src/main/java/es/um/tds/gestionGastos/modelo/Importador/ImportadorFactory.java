@@ -17,6 +17,8 @@ public class ImportadorFactory {
         switch (extension.toLowerCase()) {
             case "csv":
                 return new AdaptadorCSV();
+            case "json":
+                return new AdaptadorJSON();
             default:
                 throw new IllegalArgumentException("Formato de fichero no soportado: " + extension);
         }

@@ -1,0 +1,36 @@
+[
+  {
+    "fecha": "2026-04-01",
+    "descripcion": "Desayuno cafetería",
+    "monto": 4.50,
+    "categoria": "Comida",
+    "payer": "Me"
+  },
+  {
+    "fecha": "2026-04-02",
+    "descripcion": "Billete metro",
+    "monto": 1.50,
+    "categoria": "Transporte"
+  },
+  {
+    "fecha": "2026-04-03",
+    "descripcion": "Cine",
+    "monto": 9.90,
+    "categoria": "Ocio",
+    "payer": "Anthony"
+  },
+  {
+    "fecha": "2026-04-05",
+    "descripcion": "Compra supermercado",
+    "monto": 35.20,
+    "categoria": "Alimentación",
+    "payer": "Me"
+  },
+  {
+    "fecha": "2026-04-07",
+    "descripcion": "Gasolina",
+    "monto": 45.00,
+    "categoria": "Gasolina",
+    "payer": "Stephani"
+  }
+]
